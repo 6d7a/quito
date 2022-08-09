@@ -209,6 +209,7 @@ class RnMqtt(
   fun end(force: Boolean = false, promise: Promise? = null) {
     try {
       client.close(force)
+      eventEmitter.sendEvent(MQTT_CLOSED)
       promise?.resolve(clientRef)
     } catch (e: Exception) {
       eventEmitter.forwardException(e)
