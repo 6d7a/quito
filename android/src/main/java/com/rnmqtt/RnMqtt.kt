@@ -174,10 +174,37 @@ class RnMqtt(
           if (exception != null) {
             eventEmitter.forwardException(exception)
           }
-          promise?.reject(exception ?: Error("Encountered unidentified error sending $payload on topic $topic"))
+          promise?.reject(
+            exception ?: Error("Encountered unidentified error sending $payload on topic $topic")
+          )
         }
       })
     } catch (e: Exception) {
+      eventEmitter.forwardException(e)
+      promise?.reject(e)
+    }
+  }
+
+  /**
+   * Disconnects the client from the MQTT broker
+   *
+   * @param promise JS promise to asynchronously pass on the result of the publication attempt
+   */
+  fun disconnect(promise: Promise? = null) {
+    try {
+      client.disconnect(null, object : IMqttActionListener {
+        override fun onSuccess(asyncActionToken: IMqttToken) {
+          eventEmitter.sendEvent(MQTT_DISCONNECTED)
+          promise?.resolve(clientRef)
+        }
+
+        override fun onFailure(asyncActionToken: IMqttToken, exception: Throwable) {
+          eventEmitter.forwardException(exception)
+          promise?.reject(exception)
+        }
+      }
+      )
+    } catch (e: MqttException) {
       eventEmitter.forwardException(e)
       promise?.reject(e)
     }
@@ -197,5 +224,45 @@ class RnMqtt(
       eventEmitter.forwardException(e)
       promise?.reject(e)
     }
+  }
+
+  override fun connectionLost(cause: Throwable?) {
+    val params = Arguments.createMap()
+    if (cause != null) {
+      params.putString(MQTT_PARAM_ERR_MESSAGE.name, cause.localizedMessage)
+      if (cause is MqttException) {
+        params.putInt(MQTT_PARAM_ERR_CODE.name, cause.reasonCode)
+      }
+      params.putString(
+        MQTT_PARAM_STACKTRACE.name,
+        cause.stackTrace.joinToString("\n\t") {
+          "${it.fileName} - ${it.className}.${it.methodName}:${it.lineNumber}"
+        })
+    }
+    eventEmitter.sendEvent(MQTT_CONNECTION_LOST, params)
+  }
+
+  override fun messageArrived(topic: String?, message: MqttMessage?) {
+    val params = Arguments.createMap()
+    params.putString(MQTT_PARAM_TOPIC.name, topic)
+    if (message != null) {
+      params.putString(
+        MQTT_PARAM_MESSAGE.name,
+        message.payload.joinToString(separator = "") { b -> "%02x".format(b) })
+      params.putInt(MQTT_PARAM_QOS.name, message.qos)
+      params.putBoolean(MQTT_PARAM_RETAIN.name, message.isRetained)
+    }
+    eventEmitter.sendEvent(MQTT_MESSAGE_ARRIVED, params)
+  }
+
+  override fun deliveryComplete(token: IMqttDeliveryToken?) {
+    eventEmitter.sendEvent(MQTT_DELIVERY_COMPLETE)
+  }
+
+  override fun connectComplete(reconnect: Boolean, serverURI: String?) {
+    val params = Arguments.createMap()
+    params.putBoolean(MQTT_PARAM_RECONNECT.name, reconnect)
+    params.putString(MQTT_PARAM_SERVER_URI.name, serverURI)
+    eventEmitter.sendEvent(MQTT_CONNECTION_COMPLETE, params)
   }
 }

@@ -4,7 +4,7 @@ import com.facebook.react.bridge.ReadableMap
 import com.rnmqtt.utils.getOr
 
 data class PublishOptions(
-  val qoS: QoS,
+  val qos: QoS,
   val retain: Boolean,
   val isDuplicate: Boolean,
 ) {
