@@ -99,8 +99,8 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun isConnected(clientRef: String): Boolean {
-    return withAssertedClient(clientRef) { it.isConnected() } ?: false
+  fun isConnected(clientRef: String, promise: Promise) {
+    promise.resolve(withAssertedClient(clientRef) { it.isConnected() } ?: false)
   }
 
   @ReactMethod

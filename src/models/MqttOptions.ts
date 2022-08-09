@@ -1,6 +1,8 @@
+import type { Protocol } from './Protocol';
 import type { RnMqttWill } from './Will';
 
 export type RnMqttOptions = {
+  brokerUri: string;
   clientId?: string;
   username?: string;
   password?: string;
@@ -8,7 +10,9 @@ export type RnMqttOptions = {
   connectTimeoutMs?: number;
   will?: RnMqttWill;
   clean?: boolean;
-  protocol?: 'mqtt' | 'mqtts' | 'ws' | 'wss';
+  protocol?: Protocol;
   protocolVersion?: number;
   reconnectPeriod?: number;
+  host?: string;
+  port?: number;
 };
