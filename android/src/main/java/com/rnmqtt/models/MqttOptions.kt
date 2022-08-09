@@ -5,7 +5,7 @@ import com.rnmqtt.utils.getOr
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import java.util.*
 
-data class RnMqttOptions(
+data class MqttOptions(
   val clientId: String,
   val brokerUri: String,
   val host: String,

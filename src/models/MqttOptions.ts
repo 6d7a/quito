@@ -1,4 +1,4 @@
-import type { RnMqttWill } from './RnMqttWill';
+import type { RnMqttWill } from './Will';
 
 export type RnMqttOptions = {
   clientId?: string;

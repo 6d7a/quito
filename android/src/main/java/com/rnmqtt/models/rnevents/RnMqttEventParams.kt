@@ -1,4 +1,4 @@
-package com.rnmqtt.models
+package com.rnmqtt.models.rnevents
 
 enum class RnMqttEventParams {
   MQTT_PARAM_RECONNECT,

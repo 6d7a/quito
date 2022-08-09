@@ -4,8 +4,8 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.rnmqtt.models.RnMqttEvent
-import com.rnmqtt.models.RnMqttEventParams
+import com.rnmqtt.models.rnevents.RnMqttEvent
+import com.rnmqtt.models.rnevents.RnMqttEventParams
 import org.eclipse.paho.client.mqttv3.MqttException
 
 class RnMqttEventEmitter(private val reactContext: ReactContext, private val clientRef: String) {
