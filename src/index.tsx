@@ -44,20 +44,34 @@ export class RnMqtt {
     this._setupEventListeners();
   }
 
-  public on(event: 'connected', cb: () => void): this;
-  public on(event: 'connecting', cb: () => void): this;
-  public on(event: 'connectionloss', cb: (error?: Error) => void): this;
-  public on(event: 'subscribed', cb: (topic: string) => void): this;
-  public on(event: 'unsubscribed', cb: (topic: string) => void): this;
+  public on(event: RnMqttEvent.MQTT_CONNECTED, cb: () => void): this;
+  public on(event: RnMqttEvent.MQTT_CONNECTING, cb: () => void): this;
   public on(
-    event: 'messageReceived',
-    cb: (topic: string, payload: Buffer) => void
+    event: RnMqttEvent.MQTT_CONNECTION_LOST,
+    cb: (errorMsg?: string, errorCode?: number, stackTrace?: string) => void
   ): this;
-  public on(event: 'published', cb: () => void): this;
-  public on(event: 'disconnected', cb: () => void): this;
-  public on(event: 'error', cb: (error: Error) => void): this;
-  public on(event: 'close', cb: (error?: Error) => void): this;
-  public on(event: 'end', cb: () => void): this;
+  public on(
+    event: RnMqttEvent.MQTT_SUBSCRIBED,
+    cb: (topic: string) => void
+  ): this;
+  public on(
+    event: RnMqttEvent.MQTT_UNSUBSCRIBED,
+    cb: (topic: string) => void
+  ): this;
+  public on(
+    event: RnMqttEvent.MQTT_MESSAGE_ARRIVED,
+    cb: (topic: string, payloadAsHex: string) => void
+  ): this;
+  public on(
+    event: RnMqttEvent.MQTT_MESSAGE_PUBLISHED,
+    cb: (topic: string, payloadAsHex: string) => void
+  ): this;
+  public on(event: RnMqttEvent.MQTT_DISCONNECTED, cb: () => void): this;
+  public on(
+    event: RnMqttEvent.MQTT_EXCEPTION,
+    cb: (errorMsg?: string, errorCode?: number, stackTrace?: string) => void
+  ): this;
+  public on(event: RnMqttEvent.MQTT_CLOSED, cb: () => void): this;
   public on(event: string, cb: Function): this {
     this._eventHandler[event] = cb;
     return this;
@@ -149,101 +163,52 @@ export class RnMqtt {
   }
 
   private _setupEventListeners(): void {
-    this._eventEmitter.addListener(
-      RnMqttEvent.MQTT_CLIENT_REF_UNKNOWN,
-      (event) => {
-        if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-          return;
-        this._eventHandler['error']?.call(
-          this,
-          new Error(
-            "MQTT Client with ref '" +
-              event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] +
-              "' not found."
-          )
-        );
-      }
-    );
-    this._eventEmitter.addListener(RnMqttEvent.MQTT_CONNECTING, (event) => {
-      if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-        return;
-      this._eventHandler['connecting']?.call(this);
-    });
-    this._eventEmitter.addListener(RnMqttEvent.MQTT_CONNECTED, (event) => {
-      if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-        return;
-      this._eventHandler['connect']?.call(this);
-    });
-    this._eventEmitter.addListener(RnMqttEvent.MQTT_DISCONNECTED, (event) => {
-      if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-        return;
-      this._eventHandler['disconnect']?.call(this);
-    });
-    this._eventEmitter.addListener(
-      RnMqttEvent.MQTT_MESSAGE_ARRIVED,
-      (event) => {
-        if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-          return;
-        this._eventHandler['message']?.call(
-          this,
-          event[RnMqttEventParams.MQTT_PARAM_TOPIC],
-          Buffer.from(event[RnMqttEventParams.MQTT_PARAM_MESSAGE] ?? '', 'hex')
-        );
-      }
-    );
-    this._eventEmitter.addListener(
-      RnMqttEvent.MQTT_DELIVERY_COMPLETE,
-      (event) => {
-        if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-          return;
-        this._eventHandler['packetsend']?.call(this);
-      }
-    );
-    this._eventEmitter.addListener(
+    this._addEventListener(RnMqttEvent.MQTT_CONNECTING);
+    this._addEventListener(RnMqttEvent.MQTT_CONNECTED);
+    this._addEventListener(
       RnMqttEvent.MQTT_CONNECTION_LOST,
-      (event) => {
-        if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-          return;
-        this._eventHandler['connectionloss']?.call(
-          this,
-          new Error(
-            (event[RnMqttEventParams.MQTT_PARAM_ERR_MESSAGE] ??
-              'Connection lost. ') +
-              (`Error code: ${event[RnMqttEventParams.MQTT_PARAM_ERR_CODE]}` ??
-                '') +
-              `\n${event[RnMqttEventParams.MQTT_PARAM_STACKTRACE]}`
-          )
-        );
-      }
+      RnMqttEventParams.MQTT_PARAM_ERR_MESSAGE,
+      RnMqttEventParams.MQTT_PARAM_ERR_CODE,
+      RnMqttEventParams.MQTT_PARAM_STACKTRACE
     );
-    this._eventEmitter.addListener(RnMqttEvent.MQTT_EXCEPTION, (event) => {
+    this._addEventListener(
+      RnMqttEvent.MQTT_EXCEPTION,
+      RnMqttEventParams.MQTT_PARAM_ERR_MESSAGE,
+      RnMqttEventParams.MQTT_PARAM_ERR_CODE,
+      RnMqttEventParams.MQTT_PARAM_STACKTRACE
+    );
+    this._addEventListener(
+      RnMqttEvent.MQTT_SUBSCRIBED,
+      RnMqttEventParams.MQTT_PARAM_TOPIC
+    );
+    this._addEventListener(
+      RnMqttEvent.MQTT_UNSUBSCRIBED,
+      RnMqttEventParams.MQTT_PARAM_TOPIC
+    );
+    this._addEventListener(RnMqttEvent.MQTT_DISCONNECTED);
+    this._addEventListener(
+      RnMqttEvent.MQTT_MESSAGE_ARRIVED,
+      RnMqttEventParams.MQTT_PARAM_TOPIC,
+      RnMqttEventParams.MQTT_PARAM_MESSAGE
+    );
+    this._addEventListener(
+      RnMqttEvent.MQTT_MESSAGE_PUBLISHED,
+      RnMqttEventParams.MQTT_PARAM_TOPIC,
+      RnMqttEventParams.MQTT_PARAM_MESSAGE
+    );
+  }
+
+  private _addEventListener(
+    eventType: RnMqttEvent,
+    ...eventParams: RnMqttEventParams[]
+  ): void {
+    this._eventEmitter.addListener(eventType, (event) => {
       if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
         return;
-      this._eventHandler['error']?.call(
+
+      this._eventHandler[eventType]?.call(
         this,
-        new Error(
-          (event[RnMqttEventParams.MQTT_PARAM_ERR_MESSAGE] ??
-            'Unknown MQTT Error. ') +
-            (`Error code: ${event[RnMqttEventParams.MQTT_PARAM_ERR_CODE]}` ??
-              '') +
-            `\n${event[RnMqttEventParams.MQTT_PARAM_STACKTRACE]}`
-        )
-      );
-    });
-    this._eventEmitter.addListener(RnMqttEvent.MQTT_SUBSCRIBED, (event) => {
-      if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-        return;
-      this._eventHandler['subscribed']?.call(
-        this,
-        event[RnMqttEventParams.MQTT_PARAM_TOPIC]
-      );
-    });
-    this._eventEmitter.addListener(RnMqttEvent.MQTT_UNSUBSCRIBED, (event) => {
-      if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-        return;
-      this._eventHandler['unsubscribed']?.call(
-        this,
-        event[RnMqttEventParams.MQTT_PARAM_TOPIC]
+        ...eventParams.map((e) => event[e])
       );
     });
   }
