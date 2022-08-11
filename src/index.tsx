@@ -60,11 +60,11 @@ export class RnMqtt {
   ): this;
   public on(
     event: RnMqttEvent.MQTT_MESSAGE_ARRIVED,
-    cb: (topic: string, payloadAsHex: string) => void
+    cb: (topic: string, payloadAsUtf8: string) => void
   ): this;
   public on(
     event: RnMqttEvent.MQTT_MESSAGE_PUBLISHED,
-    cb: (topic: string, payloadAsHex: string) => void
+    cb: (topic: string, payloadAsUtf8: string) => void
   ): this;
   public on(event: RnMqttEvent.MQTT_DISCONNECTED, cb: () => void): this;
   public on(

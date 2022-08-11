@@ -11,6 +11,7 @@ import com.rnmqtt.models.PublishOptions
 import com.rnmqtt.utils.RnMqttEventEmitter
 import com.rnmqtt.utils.hexToBytes
 import org.eclipse.paho.client.mqttv3.*
+import java.nio.charset.Charset
 
 class RnMqtt(
   private val clientRef: String,
@@ -137,15 +138,15 @@ class RnMqtt(
    * Publishes a message to a topic.
    *
    * @param topic The topic to publish to.
-   * @param payloadAsHexString The message to publish.
+   * @param payloadAsUtf8String The message to publish. Raw bytes must be encoded as UTF-8.
    * @param options The [PublishOptions] to publish the message with
    * @param promise JS promise to asynchronously pass on the result of the publication attempt
    */
   fun publish(
-    topic: String, payloadAsHexString: String, options: PublishOptions, promise: Promise? = null
+    topic: String, payloadAsUtf8String: String, options: PublishOptions, promise: Promise? = null
   ) {
     try {
-      val encodedPayload = payloadAsHexString.hexToBytes()
+      val encodedPayload = payloadAsUtf8String.toByteArray(Charsets.UTF_8)
       val message = MqttMessage(encodedPayload)
         .apply {
           qos = options.qos.ordinal
@@ -155,7 +156,7 @@ class RnMqtt(
         override fun onSuccess(asyncActionToken: IMqttToken?) {
           val params = Arguments.createMap()
           params.putString(MQTT_PARAM_TOPIC.name, topic)
-          params.putString(MQTT_PARAM_MESSAGE.name, payloadAsHexString)
+          params.putString(MQTT_PARAM_MESSAGE.name, payloadAsUtf8String)
           eventEmitter.sendEvent(MQTT_MESSAGE_PUBLISHED, params)
           promise?.resolve(clientRef)
         }
@@ -165,7 +166,7 @@ class RnMqtt(
             eventEmitter.forwardException(exception)
           }
           promise?.reject(
-            exception ?: Error("Encountered unidentified error sending $payloadAsHexString on topic $topic")
+            exception ?: Error("Encountered unidentified error sending $payloadAsUtf8String on topic $topic")
           )
         }
       })

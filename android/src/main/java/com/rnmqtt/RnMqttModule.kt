@@ -68,7 +68,7 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
   @ReactMethod
   fun publish(
     topic: String,
-    payloadAsHexString: String,
+    payloadAsUtf8String: String,
     options: PublishOptions,
     clientRef: String,
     promise: Promise? = null
@@ -76,7 +76,7 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
     withAssertedClient(clientRef) {
       it.publish(
         topic,
-        payloadAsHexString,
+        payloadAsUtf8String,
         options,
         promise = promise
       )
