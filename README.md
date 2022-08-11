@@ -38,34 +38,34 @@ const MqttClient = new RnMqtt({
 MqttClient.init() // call init() to create native client and set up native event listeners
   .then(() => {
     // Subscribing to event callbacks
-    MqttClient.on('connecting', () => {
+    MqttClient.on(RnMqttEvent.CONNECTING, () => {
       // called when client is connecting
     });
-    MqttClient.on('connected', () => {
+    MqttClient.on(RnMqttEvent.CONNECTED, () => {
       // called when client is connected
     });
-    MqttClient.on('subscribed', (topic: string) => {
+    MqttClient.on(RnMqttEvent.SUBSCRIBED, (topic: string) => {
       // called when client has subscribed to a topic
     });
-    MqttClient.on('unsubscribed', (topic: string) => {
+    MqttClient.on(RnMqttEvent.UNSUBSCRIBED, (topic: string) => {
       // called when client has unsubscribed from a topic
     });
-    MqttClient.on('messageReceived', (topic: string, payload: Buffer) => {
+    MqttClient.on(RnMqttEvent.MESSAGE_RECEIVED, (topic: string, payload: Buffer) => {
       // called when client has received a message
     });
-    MqttClient.on('published', () => {
+    MqttClient.on(RnMqttEvent.MESSAGE_PUBLISHED, () => {
       // called when client has sent a message
     });
-    MqttClient.on('disconnected', () => {
+    MqttClient.on(RnMqttEvent.DISCONNECTED, () => {
       // called when client has disconnected
     });
-    MqttClient.on('connectionLost', (error?: Error) => {
+    MqttClient.on(RnMqttEvent.CONNECTION_LOST, (error?: Error) => {
       // called when client has unexpectedly lost its connection to the broker
     });
-    MqttClient.on('error', (error: Error) => {
+    MqttClient.on(RnMqttEvent.EXCEPTION, (error: Error) => {
       // called when client encountered an error
     });
-    MqttClient.on('closed', (error?: Error) => {
+    MqttClient.on(RnMqttEvent.CLOSED, (error?: Error) => {
       // called when client was closed
     });
 
@@ -127,13 +127,13 @@ await MqttClient.init(); // call init() to create native client and set up nativ
 
 // Most message callbacks are redundant 
 // when using the Promise-based API
-MqttClient.on('messageReceived', (topic: string, payload: Buffer) => {
+MqttClient.on(RnMqttEvent.MESSAGE_RECEIVED, (topic: string, payload: Buffer) => {
   // called when client has received a message
 });
-MqttClient.on('connectionLost', (error?: Error) => {
+MqttClient.on(RnMqttEvent.CONNECTION_LOST, (error?: Error) => {
   // called when client has unexpectedly lost its connection to the broker
 });
-MqttClient.on('error', (error: Error) => {
+MqttClient.on(RnMqttEvent.EXCEPTION, (error: Error) => {
   // called when client encountered an error
 });
 

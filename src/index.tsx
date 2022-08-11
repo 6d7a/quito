@@ -44,34 +44,28 @@ export class RnMqtt {
     this._setupEventListeners();
   }
 
-  public on(event: RnMqttEvent.MQTT_CONNECTED, cb: () => void): this;
-  public on(event: RnMqttEvent.MQTT_CONNECTING, cb: () => void): this;
+  public on(event: RnMqttEvent.CONNECTED, cb: () => void): this;
+  public on(event: RnMqttEvent.CONNECTING, cb: () => void): this;
   public on(
-    event: RnMqttEvent.MQTT_CONNECTION_LOST,
+    event: RnMqttEvent.CONNECTION_LOST,
     cb: (errorMsg?: string, errorCode?: number, stackTrace?: string) => void
   ): this;
+  public on(event: RnMqttEvent.SUBSCRIBED, cb: (topic: string) => void): this;
+  public on(event: RnMqttEvent.UNSUBSCRIBED, cb: (topic: string) => void): this;
   public on(
-    event: RnMqttEvent.MQTT_SUBSCRIBED,
-    cb: (topic: string) => void
-  ): this;
-  public on(
-    event: RnMqttEvent.MQTT_UNSUBSCRIBED,
-    cb: (topic: string) => void
-  ): this;
-  public on(
-    event: RnMqttEvent.MQTT_MESSAGE_ARRIVED,
+    event: RnMqttEvent.MESSAGE_RECEIVED,
     cb: (topic: string, payloadAsUtf8: string) => void
   ): this;
   public on(
-    event: RnMqttEvent.MQTT_MESSAGE_PUBLISHED,
+    event: RnMqttEvent.MESSAGE_PUBLISHED,
     cb: (topic: string, payloadAsUtf8: string) => void
   ): this;
-  public on(event: RnMqttEvent.MQTT_DISCONNECTED, cb: () => void): this;
+  public on(event: RnMqttEvent.DISCONNECTED, cb: () => void): this;
   public on(
-    event: RnMqttEvent.MQTT_EXCEPTION,
+    event: RnMqttEvent.EXCEPTION,
     cb: (errorMsg?: string, errorCode?: number, stackTrace?: string) => void
   ): this;
-  public on(event: RnMqttEvent.MQTT_CLOSED, cb: () => void): this;
+  public on(event: RnMqttEvent.CLOSED, cb: () => void): this;
   public on(event: string, cb: Function): this {
     this._eventHandler[event] = cb;
     return this;
@@ -149,52 +143,46 @@ export class RnMqtt {
   closeAsync = this.endAsync;
 
   private _removeEventListeners(): void {
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_CLIENT_REF_UNKNOWN);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_CONNECTED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_CONNECTING);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_CONNECTION_LOST);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_DELIVERY_COMPLETE);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_DISCONNECTED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_EXCEPTION);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_MESSAGE_ARRIVED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_RECONNECT);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_SUBSCRIBED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MQTT_UNSUBSCRIBED);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.CLIENT_REF_UNKNOWN);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.CONNECTED);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.CONNECTING);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.CONNECTION_LOST);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.DELIVERY_COMPLETE);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.DISCONNECTED);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.EXCEPTION);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.MESSAGE_RECEIVED);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.RECONNECT);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.SUBSCRIBED);
+    this._eventEmitter.removeAllListeners(RnMqttEvent.UNSUBSCRIBED);
   }
 
   private _setupEventListeners(): void {
-    this._addEventListener(RnMqttEvent.MQTT_CONNECTING);
-    this._addEventListener(RnMqttEvent.MQTT_CONNECTED);
+    this._addEventListener(RnMqttEvent.CONNECTING);
+    this._addEventListener(RnMqttEvent.CONNECTED);
     this._addEventListener(
-      RnMqttEvent.MQTT_CONNECTION_LOST,
-      RnMqttEventParams.MQTT_PARAM_ERR_MESSAGE,
-      RnMqttEventParams.MQTT_PARAM_ERR_CODE,
-      RnMqttEventParams.MQTT_PARAM_STACKTRACE
+      RnMqttEvent.CONNECTION_LOST,
+      RnMqttEventParams.ERR_MESSAGE,
+      RnMqttEventParams.ERR_CODE,
+      RnMqttEventParams.STACKTRACE
     );
     this._addEventListener(
-      RnMqttEvent.MQTT_EXCEPTION,
-      RnMqttEventParams.MQTT_PARAM_ERR_MESSAGE,
-      RnMqttEventParams.MQTT_PARAM_ERR_CODE,
-      RnMqttEventParams.MQTT_PARAM_STACKTRACE
+      RnMqttEvent.EXCEPTION,
+      RnMqttEventParams.ERR_MESSAGE,
+      RnMqttEventParams.ERR_CODE,
+      RnMqttEventParams.STACKTRACE
+    );
+    this._addEventListener(RnMqttEvent.SUBSCRIBED, RnMqttEventParams.TOPIC);
+    this._addEventListener(RnMqttEvent.UNSUBSCRIBED, RnMqttEventParams.TOPIC);
+    this._addEventListener(RnMqttEvent.DISCONNECTED);
+    this._addEventListener(
+      RnMqttEvent.MESSAGE_RECEIVED,
+      RnMqttEventParams.TOPIC,
+      RnMqttEventParams.PAYLOAD
     );
     this._addEventListener(
-      RnMqttEvent.MQTT_SUBSCRIBED,
-      RnMqttEventParams.MQTT_PARAM_TOPIC
-    );
-    this._addEventListener(
-      RnMqttEvent.MQTT_UNSUBSCRIBED,
-      RnMqttEventParams.MQTT_PARAM_TOPIC
-    );
-    this._addEventListener(RnMqttEvent.MQTT_DISCONNECTED);
-    this._addEventListener(
-      RnMqttEvent.MQTT_MESSAGE_ARRIVED,
-      RnMqttEventParams.MQTT_PARAM_TOPIC,
-      RnMqttEventParams.MQTT_PARAM_MESSAGE
-    );
-    this._addEventListener(
-      RnMqttEvent.MQTT_MESSAGE_PUBLISHED,
-      RnMqttEventParams.MQTT_PARAM_TOPIC,
-      RnMqttEventParams.MQTT_PARAM_MESSAGE
+      RnMqttEvent.MESSAGE_PUBLISHED,
+      RnMqttEventParams.TOPIC,
+      RnMqttEventParams.PAYLOAD
     );
   }
 
@@ -203,8 +191,7 @@ export class RnMqtt {
     ...eventParams: RnMqttEventParams[]
   ): void {
     this._eventEmitter.addListener(eventType, (event) => {
-      if (event[RnMqttEventParams.MQTT_PARAM_CLIENT_REF] !== this._clientRef)
-        return;
+      if (event[RnMqttEventParams.CLIENT_REF] !== this._clientRef) return;
 
       this._eventHandler[eventType]?.call(
         this,

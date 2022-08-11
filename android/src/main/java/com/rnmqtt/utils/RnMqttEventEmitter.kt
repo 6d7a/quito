@@ -15,14 +15,14 @@ class RnMqttEventEmitter(private val reactContext: ReactContext, private val cli
    */
   fun forwardException(e: Throwable) {
     val params = Arguments.createMap()
-    params.putString(RnMqttEventParams.MQTT_PARAM_ERR_MESSAGE.name, e.localizedMessage)
+    params.putString(RnMqttEventParams.ERR_MESSAGE.name, e.localizedMessage)
     if (e is MqttException) {
-      params.putInt(RnMqttEventParams.MQTT_PARAM_ERR_CODE.name, e.reasonCode)
+      params.putInt(RnMqttEventParams.ERR_CODE.name, e.reasonCode)
     }
-    params.putString(RnMqttEventParams.MQTT_PARAM_STACKTRACE.name, e.stackTrace.joinToString("\n\t") {
+    params.putString(RnMqttEventParams.STACKTRACE.name, e.stackTrace.joinToString("\n\t") {
       "${it.fileName} - ${it.className}.${it.methodName}:${it.lineNumber}"
     })
-    sendEvent(RnMqttEvent.MQTT_EXCEPTION, params)
+    sendEvent(RnMqttEvent.EXCEPTION, params)
   }
 
   /**
@@ -31,7 +31,7 @@ class RnMqttEventEmitter(private val reactContext: ReactContext, private val cli
    * @param params The parameters to send with the event.
    */
   fun sendEvent(event: RnMqttEvent, params: WritableMap = Arguments.createMap()) {
-    params.putString(RnMqttEventParams.MQTT_PARAM_CLIENT_REF.name, clientRef)
+    params.putString(RnMqttEventParams.CLIENT_REF.name, clientRef)
     reactContext
       .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
       .emit(event.name, params)

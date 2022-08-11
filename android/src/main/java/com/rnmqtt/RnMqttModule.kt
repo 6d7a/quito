@@ -115,7 +115,7 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
       val params = Arguments.createMap()
       params.putString("clientRef", clientRef)
       reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-        .emit(RnMqttEvent.MQTT_CLIENT_REF_UNKNOWN.name, params)
+        .emit(RnMqttEvent.CLIENT_REF_UNKNOWN.name, params)
       null
     }
   }
