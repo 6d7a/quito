@@ -6,6 +6,8 @@ import { RnMqttEvent } from './models/rnevents/RnMqttEvent';
 import { RnMqttEventParams } from './models/rnevents/RnMqttEventParams';
 import { parseUri } from './utils/parseUri';
 
+export * from './models/rnevents/RnMqttEvent';
+
 const LINKING_ERROR =
   `The package 'rn-mqtt' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -23,6 +25,18 @@ const RnMqttModule = NativeModules.RnMqtt
       }
     );
 
+/**
+ * RnMqtt is a Typescript wrapper for native MQTT clients
+ * 
+ * @param options configuration options for the client
+ * Instantiate the client with the following configuration options:
+ *  - brokerUri: (string, required) address of the MQTT broker that the client will connect to
+ *  - clientId: (string, optional) id used to identify the client with the broker
+ *  - host: (string, optional) host name of the MQTT broker - will be automatically extracted from the brokerUri if not provided
+ *  - port: (number, ortional) port number of the MQTT broker - will be automatically extracted from the brokerUri if not provided
+ *  - protocol: (string, optional) protocol used in the connection to the broker - will be automatically extracted from the brokerUri if not provided
+ *  - clean: (boolean, optional)
+ */
 export class RnMqtt {
   private _options: RnMqttOptions;
   private _clientRef?: string;
@@ -87,12 +101,12 @@ export class RnMqtt {
     await RnMqttModule.disconnect(this._clientRef);
   }
 
-  subscribe(topics: MqttSubscription[]): void {
-    RnMqttModule.subscribe(topics, this._clientRef);
+  subscribe(...topics: MqttSubscription[]): void {
+    RnMqttModule.subscribe([...topics], this._clientRef);
   }
 
-  async subscribeAsync(topics: MqttSubscription[]): Promise<void> {
-    await RnMqttModule.subscribe(topics, this._clientRef);
+  async subscribeAsync(...topics: MqttSubscription[]): Promise<void> {
+    await RnMqttModule.subscribe([...topics], this._clientRef);
   }
 
   unsubscribe(topic: string | string[]): void {
@@ -107,18 +121,18 @@ export class RnMqtt {
 
   publish(
     topic: string,
-    payloadAsHexString: string,
-    options: PublishOptions
+    payloadUtf8: string,
+    options: PublishOptions = {}
   ): void {
-    RnMqttModule.publish(topic, payloadAsHexString, options, this._clientRef);
+    RnMqttModule.publish(topic, payloadUtf8, options, this._clientRef);
   }
 
   async publishAsync(
     topic: string,
-    payloadAsHexString: string,
-    options: PublishOptions
+    payloadUtf8: string,
+    options: PublishOptions = {}
   ): Promise<void> {
-    RnMqttModule.publish(topic, payloadAsHexString, options, this._clientRef);
+    RnMqttModule.publish(topic, payloadUtf8, options, this._clientRef);
   }
 
   reconnect(): void {

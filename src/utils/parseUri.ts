@@ -1,4 +1,4 @@
-import { Protocol, protocolFromString } from 'src/models/Protocol';
+import { Protocol, protocolFromString } from '../models/Protocol';
 
 export type MqttUri = {
   protocol: Protocol;
