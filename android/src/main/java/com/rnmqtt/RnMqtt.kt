@@ -1,15 +1,19 @@
 package com.rnmqtt
 
+import android.util.Log
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactContext
+import com.rnmqtt.models.MqttOptions
 import com.rnmqtt.models.MqttSubscription
+import com.rnmqtt.models.PublishOptions
 import com.rnmqtt.models.rnevents.RnMqttEvent.*
 import com.rnmqtt.models.rnevents.RnMqttEventParams.*
-import com.rnmqtt.models.MqttOptions
-import com.rnmqtt.models.PublishOptions
 import com.rnmqtt.utils.RnMqttEventEmitter
+import com.rnmqtt.utils.TlsHelpers
 import org.eclipse.paho.client.mqttv3.*
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
+
 
 class RnMqtt(
   private val clientRef: String,
@@ -23,7 +27,7 @@ class RnMqtt(
     MemoryPersistence()
   )
   private val subscribedTopics: MutableList<MqttSubscription> = mutableListOf()
-
+  private val tlsHelpers = TlsHelpers(reactContext, eventEmitter, clientRef)
 
   init {
     client.setCallback(this)
@@ -55,18 +59,20 @@ class RnMqtt(
   fun connect(promise: Promise? = null) {
     try {
       eventEmitter.sendEvent(CONNECTING)
-      client.connect(options.toPahoMqttOptions(), reactContext, object : IMqttActionListener {
-        override fun onSuccess(asyncActionToken: IMqttToken) {
-          eventEmitter.sendEvent(CONNECTED)
-          subscribe(*subscribedTopics.toTypedArray())
-          promise?.resolve(clientRef)
-        }
+      client.connect(
+        options.toPahoMqttOptions(tlsHelpers),
+        reactContext,
+        object : IMqttActionListener {
+          override fun onSuccess(asyncActionToken: IMqttToken) {
+            eventEmitter.sendEvent(CONNECTED)
+            promise?.resolve(clientRef)
+          }
 
-        override fun onFailure(asyncActionToken: IMqttToken, exception: Throwable) {
-          eventEmitter.forwardException(exception)
-          promise?.reject(exception)
-        }
-      })
+          override fun onFailure(asyncActionToken: IMqttToken, exception: Throwable) {
+            eventEmitter.forwardException(exception)
+            promise?.reject(exception)
+          }
+        })
     } catch (e: MqttException) {
       eventEmitter.forwardException(e)
       promise?.reject(e)
@@ -168,7 +174,8 @@ class RnMqtt(
             eventEmitter.forwardException(exception)
           }
           promise?.reject(
-            exception ?: Error("Encountered unidentified error sending $payloadAsUtf8String on topic $topic")
+            exception
+              ?: Error("Encountered unidentified error sending $payloadAsUtf8String on topic $topic")
           )
         }
       })
