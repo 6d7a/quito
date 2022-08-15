@@ -18,7 +18,7 @@ fun<T> ReadableMap.getOr(field: String, default: T): T {
       ReadableType.Null -> default
     }
   } catch (e: Throwable) {
-    Log.e("RnMqtt", "failed to read field of ReadableMap: ", e)
+    Log.d("RnMqtt", "failed to read field of ReadableMap: ${e.message}")
     default
   }
 }
