@@ -49,11 +49,12 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
     withAssertedClient(clientRef) { it.connect(promise) }
   }
 
+  @Suppress("UNCHECKED_CAST")
   @ReactMethod
   fun subscribe(topics: ReadableArray, clientRef: String, promise: Promise? = null) {
     val mqttSubscriptions = topics.toArrayList().map {
-      it as ReadableMap
-      MqttSubscription(it.getString("topic")!!, QoS.values()[it.getOr("qos", 0)])
+      it as HashMap<String, Any>
+      MqttSubscription(it["topic"]!! as String, QoS.values()[(it["qos"] as Number?)?.toInt() ?: 0])
     }.toTypedArray()
     withAssertedClient(clientRef) { it.subscribe(*mqttSubscriptions, promise = promise) }
   }
@@ -69,7 +70,7 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
   fun publish(
     topic: String,
     payloadAsUtf8String: String,
-    options: PublishOptions,
+    options: ReadableMap,
     clientRef: String,
     promise: Promise? = null
   ) {
@@ -77,7 +78,7 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
       it.publish(
         topic,
         payloadAsUtf8String,
-        options,
+        PublishOptions(options),
         promise = promise
       )
     }
