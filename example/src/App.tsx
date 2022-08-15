@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { View, Text, TextInput, Button } from 'react-native';
-import { RnMqtt, RnMqttEvent } from 'rn-mqtt';
+import { RnMqtt, RnMqttEvent, Protocol } from 'rn-mqtt';
 
 export default function App() {
   const [mqttClient, setMqttClient] = React.useState<RnMqtt>();
@@ -11,8 +11,11 @@ export default function App() {
 
   React.useEffect(() => {
     const client = new RnMqtt({
-      brokerUri: 'mqtt://test.mosquitto.org:1883',
+      host: 'test.mosquitto.org',
+      port: 8884,
+      protocol: Protocol.SSL,
       clientId: 'rn-mqtt-example',
+      tls: true,
     });
 
     client

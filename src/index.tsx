@@ -4,9 +4,9 @@ import type { MqttSubscription } from './models/MqttSubscription';
 import type { PublishOptions } from './models/PublishOptions';
 import { RnMqttEvent } from './models/rnevents/RnMqttEvent';
 import { RnMqttEventParams } from './models/rnevents/RnMqttEventParams';
-import { parseUri } from './utils/parseUri';
 
 export * from './models/rnevents/RnMqttEvent';
+export * from './models/Protocol';
 
 const LINKING_ERROR =
   `The package 'rn-mqtt' doesn't seem to be linked. Make sure: \n\n` +
@@ -27,7 +27,7 @@ const RnMqttModule = NativeModules.RnMqtt
 
 /**
  * RnMqtt is a Typescript wrapper for native MQTT clients
- * 
+ *
  * @param options configuration options for the client
  * Instantiate the client with the following configuration options:
  *  - brokerUri: (string, required) address of the MQTT broker that the client will connect to
@@ -44,13 +44,7 @@ export class RnMqtt {
   private _eventEmitter = new NativeEventEmitter(RnMqttModule);
 
   constructor(options: RnMqttOptions) {
-    const parsedUri = parseUri(options.brokerUri);
-    this._options = {
-      ...options,
-      host: parsedUri.host,
-      port: parsedUri.port,
-      protocol: parsedUri.protocol,
-    };
+    this._options = options;
   }
 
   async init(): Promise<void> {
@@ -205,6 +199,7 @@ export class RnMqtt {
     ...eventParams: RnMqttEventParams[]
   ): void {
     this._eventEmitter.addListener(eventType, (event) => {
+      console.log(eventType, JSON.stringify(event));
       if (event[RnMqttEventParams.CLIENT_REF] !== this._clientRef) return;
 
       this._eventHandler[eventType]?.call(
