@@ -17,7 +17,11 @@ class RnMqtt(
   private val options: MqttOptions
 ) : MqttCallbackExtended {
   private val eventEmitter = RnMqttEventEmitter(reactContext, clientRef)
-  private var client = MqttAsyncClient(options.brokerUri, options.clientId)
+  private var client = MqttAsyncClient(
+    options.brokerUri,
+    "${options.clientId}-${MqttAsyncClient.generateClientId()}",
+    MemoryPersistence()
+  )
   private val subscribedTopics: MutableList<MqttSubscription> = mutableListOf()
 
 
