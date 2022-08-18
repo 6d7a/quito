@@ -1,6 +1,6 @@
 {
-  "name": "rn-mqtt-example",
-  "description": "Example app for rn-mqtt",
+  "name": "quito-example",
+  "description": "Example app for quito",
   "version": "0.0.1",
   "private": true,
   "scripts": {

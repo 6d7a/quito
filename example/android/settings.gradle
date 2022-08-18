@@ -1,6 +1,6 @@
-rootProject.name = 'RnMqttExample'
+rootProject.name = 'QuitoExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 
-include ':rnmqtt'
-project(':rnmqtt').projectDir = new File(rootProject.projectDir, '../../android')
+include ':quito'
+project(':quito').projectDir = new File(rootProject.projectDir, '../../android')

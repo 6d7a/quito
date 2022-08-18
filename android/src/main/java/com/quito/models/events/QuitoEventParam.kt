@@ -1,6 +1,6 @@
-package com.rnmqtt.models.rnevents
+package com.quito.models.rnevents
 
-enum class RnMqttEventParams {
+enum class QuitoEventParam {
   SERVER_URI,
   CLIENT_REF,
   ERR_MESSAGE,

@@ -1,21 +1,22 @@
 import { NativeModules, Platform, NativeEventEmitter } from 'react-native';
-import type { RnMqttOptions } from './models/MqttOptions';
+import type { QuitoOptions } from './models/MqttOptions';
 import type { MqttSubscription } from './models/MqttSubscription';
 import type { PublishOptions } from './models/PublishOptions';
-import { RnMqttEvent } from './models/rnevents/RnMqttEvent';
-import { RnMqttEventParams } from './models/rnevents/RnMqttEventParams';
+import { QuitoEvent } from './models/events/QuitoEvent';
+import { QuitoEventParam } from './models/events/QuitoEventParam';
 
-export * from './models/rnevents/RnMqttEvent';
+export * from './models/events/QuitoEvent';
 export * from './models/Protocol';
+export * from './models/MqttOptions';
 
 const LINKING_ERROR =
-  `The package 'rn-mqtt' doesn't seem to be linked. Make sure: \n\n` +
+  `The package 'quito' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-const RnMqttModule = NativeModules.RnMqtt
-  ? NativeModules.RnMqtt
+const QuitoNative = NativeModules.Quito
+  ? NativeModules.Quito
   : new Proxy(
       {},
       {
@@ -26,91 +27,85 @@ const RnMqttModule = NativeModules.RnMqtt
     );
 
 /**
- * RnMqtt is a Typescript wrapper for native MQTT clients
+ * Quito is a Typescript wrapper for native MQTT clients
  *
  * @param options configuration options for the client
- * Instantiate the client with the following configuration options:
- *  - brokerUri: (string, required) address of the MQTT broker that the client will connect to
- *  - clientId: (string, optional) id used to identify the client with the broker
- *  - host: (string, optional) host name of the MQTT broker - will be automatically extracted from the brokerUri if not provided
- *  - port: (number, ortional) port number of the MQTT broker - will be automatically extracted from the brokerUri if not provided
- *  - protocol: (string, optional) protocol used in the connection to the broker - will be automatically extracted from the brokerUri if not provided
- *  - clean: (boolean, optional)
  */
-export class RnMqtt {
-  private _options: RnMqttOptions;
+export class Quito {
+  private _options: QuitoOptions;
   private _clientRef?: string;
   private _eventHandler: any = {};
-  private _eventEmitter = new NativeEventEmitter(RnMqttModule);
+  private _eventEmitter = new NativeEventEmitter(QuitoNative);
 
-  constructor(options: RnMqttOptions) {
+  constructor(options: QuitoOptions) {
     this._options = options;
+    console.log(JSON.stringify(this._options));
   }
 
   async init(): Promise<void> {
-    this._clientRef = await RnMqttModule.createClient(this._options);
+    this._clientRef = await QuitoNative.createClient(this._options);
     this._setupEventListeners();
   }
 
-  public on(event: RnMqttEvent.CONNECTED, cb: () => void): this;
-  public on(event: RnMqttEvent.CONNECTING, cb: () => void): this;
+  public on(event: QuitoEvent.CONNECTED, cb: () => void): this;
+  public on(event: QuitoEvent.CONNECTING, cb: () => void): this;
   public on(
-    event: RnMqttEvent.CONNECTION_LOST,
+    event: QuitoEvent.CONNECTION_LOST,
     cb: (errorMsg?: string, errorCode?: number, stackTrace?: string) => void
   ): this;
-  public on(event: RnMqttEvent.SUBSCRIBED, cb: (topic: string) => void): this;
-  public on(event: RnMqttEvent.UNSUBSCRIBED, cb: (topic: string) => void): this;
+  public on(event: QuitoEvent.SUBSCRIBED, cb: (topic: string) => void): this;
+  public on(event: QuitoEvent.UNSUBSCRIBED, cb: (topic: string) => void): this;
   public on(
-    event: RnMqttEvent.MESSAGE_RECEIVED,
+    event: QuitoEvent.MESSAGE_RECEIVED,
     cb: (topic: string, payloadAsUtf8: string) => void
   ): this;
   public on(
-    event: RnMqttEvent.MESSAGE_PUBLISHED,
+    event: QuitoEvent.MESSAGE_PUBLISHED,
     cb: (topic: string, payloadAsUtf8: string) => void
   ): this;
-  public on(event: RnMqttEvent.DISCONNECTED, cb: () => void): this;
+  public on(event: QuitoEvent.DISCONNECTED, cb: () => void): this;
   public on(
-    event: RnMqttEvent.EXCEPTION,
+    event: QuitoEvent.EXCEPTION,
     cb: (errorMsg?: string, errorCode?: number, stackTrace?: string) => void
   ): this;
-  public on(event: RnMqttEvent.CLOSED, cb: () => void): this;
+  public on(event: QuitoEvent.CLOSED, cb: () => void): this;
   public on(event: string, cb: Function): this {
     this._eventHandler[event] = cb;
     return this;
   }
 
   connect(): void {
-    RnMqttModule.connect(this._clientRef);
+    QuitoNative.connect(this._clientRef);
   }
 
   async connectAsync(): Promise<void> {
-    await RnMqttModule.connect(this._clientRef);
+    await QuitoNative.connect(this._clientRef);
   }
 
   disconnect(): void {
-    RnMqttModule.disconnect(this._clientRef);
+    QuitoNative.disconnect(this._clientRef);
   }
 
   async disconnectAsync(): Promise<void> {
-    await RnMqttModule.disconnect(this._clientRef);
+    await QuitoNative.disconnect(this._clientRef);
   }
 
   subscribe(...topics: MqttSubscription[]): void {
-    RnMqttModule.subscribe([...topics], this._clientRef);
+    QuitoNative.subscribe([...topics], this._clientRef);
   }
 
   async subscribeAsync(...topics: MqttSubscription[]): Promise<void> {
-    await RnMqttModule.subscribe([...topics], this._clientRef);
+    await QuitoNative.subscribe([...topics], this._clientRef);
   }
 
   unsubscribe(topic: string | string[]): void {
     const readableTopics = Array.from([topic].flat());
-    RnMqttModule.unsubscribe(readableTopics, this._clientRef);
+    QuitoNative.unsubscribe(readableTopics, this._clientRef);
   }
 
   async unsubscribeAsync(topic: string | string[]): Promise<void> {
     const readableTopics = Array.from([topic].flat());
-    await RnMqttModule.unsubscribe(readableTopics, this._clientRef);
+    await QuitoNative.unsubscribe(readableTopics, this._clientRef);
   }
 
   publish(
@@ -118,7 +113,7 @@ export class RnMqtt {
     payloadUtf8: string,
     options: PublishOptions = {}
   ): void {
-    RnMqttModule.publish(topic, payloadUtf8, options, this._clientRef);
+    QuitoNative.publish(topic, payloadUtf8, options, this._clientRef);
   }
 
   async publishAsync(
@@ -126,24 +121,24 @@ export class RnMqtt {
     payloadUtf8: string,
     options: PublishOptions = {}
   ): Promise<void> {
-    RnMqttModule.publish(topic, payloadUtf8, options, this._clientRef);
+    QuitoNative.publish(topic, payloadUtf8, options, this._clientRef);
   }
 
   reconnect(): void {
-    RnMqttModule.reconnect(this._clientRef);
+    QuitoNative.reconnect(this._clientRef);
   }
 
   async isConnected(): Promise<boolean> {
-    return await RnMqttModule.isConnected(this._clientRef);
+    return await QuitoNative.isConnected(this._clientRef);
   }
 
   end(force: Boolean = false): void {
-    RnMqttModule.end(this._clientRef, force);
+    QuitoNative.end(this._clientRef, force);
     this._removeEventListeners();
   }
 
   async endAsync(force: Boolean = false): Promise<void> {
-    await RnMqttModule.end(this._clientRef, force);
+    await QuitoNative.end(this._clientRef, force);
     this._removeEventListeners();
   }
 
@@ -151,56 +146,56 @@ export class RnMqtt {
   closeAsync = this.endAsync;
 
   private _removeEventListeners(): void {
-    this._eventEmitter.removeAllListeners(RnMqttEvent.CLIENT_REF_UNKNOWN);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.CONNECTED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.CONNECTING);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.CONNECTION_LOST);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.DELIVERY_COMPLETE);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.DISCONNECTED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.EXCEPTION);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.MESSAGE_RECEIVED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.RECONNECT);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.SUBSCRIBED);
-    this._eventEmitter.removeAllListeners(RnMqttEvent.UNSUBSCRIBED);
+    this._eventEmitter.removeAllListeners(QuitoEvent.CLIENT_REF_UNKNOWN);
+    this._eventEmitter.removeAllListeners(QuitoEvent.CONNECTED);
+    this._eventEmitter.removeAllListeners(QuitoEvent.CONNECTING);
+    this._eventEmitter.removeAllListeners(QuitoEvent.CONNECTION_LOST);
+    this._eventEmitter.removeAllListeners(QuitoEvent.DELIVERY_COMPLETE);
+    this._eventEmitter.removeAllListeners(QuitoEvent.DISCONNECTED);
+    this._eventEmitter.removeAllListeners(QuitoEvent.EXCEPTION);
+    this._eventEmitter.removeAllListeners(QuitoEvent.MESSAGE_RECEIVED);
+    this._eventEmitter.removeAllListeners(QuitoEvent.RECONNECT);
+    this._eventEmitter.removeAllListeners(QuitoEvent.SUBSCRIBED);
+    this._eventEmitter.removeAllListeners(QuitoEvent.UNSUBSCRIBED);
   }
 
   private _setupEventListeners(): void {
-    this._addEventListener(RnMqttEvent.CONNECTING);
-    this._addEventListener(RnMqttEvent.CONNECTED);
+    this._addEventListener(QuitoEvent.CONNECTING);
+    this._addEventListener(QuitoEvent.CONNECTED);
     this._addEventListener(
-      RnMqttEvent.CONNECTION_LOST,
-      RnMqttEventParams.ERR_MESSAGE,
-      RnMqttEventParams.ERR_CODE,
-      RnMqttEventParams.STACKTRACE
+      QuitoEvent.CONNECTION_LOST,
+      QuitoEventParam.ERR_MESSAGE,
+      QuitoEventParam.ERR_CODE,
+      QuitoEventParam.STACKTRACE
     );
     this._addEventListener(
-      RnMqttEvent.EXCEPTION,
-      RnMqttEventParams.ERR_MESSAGE,
-      RnMqttEventParams.ERR_CODE,
-      RnMqttEventParams.STACKTRACE
+      QuitoEvent.EXCEPTION,
+      QuitoEventParam.ERR_MESSAGE,
+      QuitoEventParam.ERR_CODE,
+      QuitoEventParam.STACKTRACE
     );
-    this._addEventListener(RnMqttEvent.SUBSCRIBED, RnMqttEventParams.TOPIC);
-    this._addEventListener(RnMqttEvent.UNSUBSCRIBED, RnMqttEventParams.TOPIC);
-    this._addEventListener(RnMqttEvent.DISCONNECTED);
+    this._addEventListener(QuitoEvent.SUBSCRIBED, QuitoEventParam.TOPIC);
+    this._addEventListener(QuitoEvent.UNSUBSCRIBED, QuitoEventParam.TOPIC);
+    this._addEventListener(QuitoEvent.DISCONNECTED);
     this._addEventListener(
-      RnMqttEvent.MESSAGE_RECEIVED,
-      RnMqttEventParams.TOPIC,
-      RnMqttEventParams.PAYLOAD
+      QuitoEvent.MESSAGE_RECEIVED,
+      QuitoEventParam.TOPIC,
+      QuitoEventParam.PAYLOAD
     );
     this._addEventListener(
-      RnMqttEvent.MESSAGE_PUBLISHED,
-      RnMqttEventParams.TOPIC,
-      RnMqttEventParams.PAYLOAD
+      QuitoEvent.MESSAGE_PUBLISHED,
+      QuitoEventParam.TOPIC,
+      QuitoEventParam.PAYLOAD
     );
   }
 
   private _addEventListener(
-    eventType: RnMqttEvent,
-    ...eventParams: RnMqttEventParams[]
+    eventType: QuitoEvent,
+    ...eventParams: QuitoEventParam[]
   ): void {
     this._eventEmitter.addListener(eventType, (event) => {
       console.log(eventType, JSON.stringify(event));
-      if (event[RnMqttEventParams.CLIENT_REF] !== this._clientRef) return;
+      if (event[QuitoEventParam.CLIENT_REF] !== this._clientRef) return;
 
       this._eventHandler[eventType]?.call(
         this,

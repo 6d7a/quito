@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 
-		5E555C0D2413F4C50049A1A2 /* RnMqtt.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RnMqtt.m */; };
-		F4FF95D7245B92E800C19C63 /*  RnMqtt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  RnMqtt.swift */; };
+		5E555C0D2413F4C50049A1A2 /* Quito.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* Quito.m */; };
+		F4FF95D7245B92E800C19C63 /*  Quito.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  Quito.swift */; };
 
 /* End PBXBuildFile section */
 
@@ -26,11 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRnMqtt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRnMqtt.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libQuito.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libQuito.a; sourceTree = BUILT_PRODUCTS_DIR; };
 
-		B3E7B5891CC2AC0600A0062D /* RnMqtt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RnMqtt.m; sourceTree = "<group>"; };
-		F4FF95D5245B92E700C19C63 /* RnMqtt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RnMqtt-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4FF95D6245B92E800C19C63 /* RnMqtt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RnMqtt.swift; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* Quito.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quito.m; sourceTree = "<group>"; };
+		F4FF95D5245B92E700C19C63 /* Quito-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Quito-Bridging-Header.h"; sourceTree = "<group>"; };
+		F4FF95D6245B92E800C19C63 /* Quito.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quito.swift; sourceTree = "<group>"; };
 
 /* End PBXFileReference section */
 
@@ -48,7 +48,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libRnMqtt.a */,
+				134814201AA4EA6300B7C361 /* libQuito.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +57,9 @@
 			isa = PBXGroup;
 			children = (
 
-				F4FF95D6245B92E800C19C63 /* RnMqtt.swift */,
-				B3E7B5891CC2AC0600A0062D /* RnMqtt.m */,
-				F4FF95D5245B92E700C19C63 /* RnMqtt-Bridging-Header.h */,
+				F4FF95D6245B92E800C19C63 /* Quito.swift */,
+				B3E7B5891CC2AC0600A0062D /* Quito.m */,
+				F4FF95D5245B92E700C19C63 /* Quito-Bridging-Header.h */,
 
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
@@ -68,9 +68,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* RnMqtt */ = {
+		58B511DA1A9E6C8500147676 /* Quito */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RnMqtt" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "Quito" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -80,9 +80,9 @@
 			);
 			dependencies = (
 			);
-			name = RnMqtt;
+			name = Quito;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libRnMqtt.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libQuito.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RnMqtt" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "Quito" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* RnMqtt */,
+				58B511DA1A9E6C8500147676 /* Quito */,
 			);
 		};
 /* End PBXProject section */
@@ -123,8 +123,8 @@
 			buildActionMask = 2147483647;
 			files = (
 
-				F4FF95D7245B92E800C19C63 /* RnMqtt.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* RnMqtt.m in Sources */,
+				F4FF95D7245B92E800C19C63 /* Quito.swift in Sources */,
+				B3E7B58A1CC2AC0600A0062D /* Quito.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,10 +236,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RnMqtt;
+				PRODUCT_NAME = Quito;
 				SKIP_INSTALL = YES;
 
-				SWIFT_OBJC_BRIDGING_HEADER = "RnMqtt-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Quito-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 
@@ -257,10 +257,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RnMqtt;
+				PRODUCT_NAME = Quito;
 				SKIP_INSTALL = YES;
 
-				SWIFT_OBJC_BRIDGING_HEADER = "RnMqtt-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Quito-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 
 			};
@@ -269,7 +269,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RnMqtt" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "Quito" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -278,7 +278,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RnMqtt" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "Quito" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

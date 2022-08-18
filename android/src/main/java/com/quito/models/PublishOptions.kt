@@ -1,7 +1,7 @@
-package com.rnmqtt.models
+package com.quito.models
 
 import com.facebook.react.bridge.ReadableMap
-import com.rnmqtt.utils.getOr
+import com.quito.utils.getOr
 
 data class PublishOptions(
   val qos: QoS,

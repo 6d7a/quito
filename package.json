@@ -1,5 +1,5 @@
 {
-  "name": "rn-mqtt",
+  "name": "quito",
   "version": "0.1.0",
   "description": "A TCP-capable MQTT client for react native",
   "main": "lib/commonjs/index",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "rn-mqtt.podspec",
+    "quito.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "http://github.com/6d7a/rn-mqtt",
+  "repository": "http://github.com/6d7a/quito",
   "author": "Kevin Westphal",
   "license": "MIT",
   "bugs": {
-    "url": "http://github.com/6d7a/rn-mqtt/issues"
+    "url": "http://github.com/6d7a/quito/issues"
   },
-  "homepage": "http://github.com/6d7a/rn-mqtt#readme",
+  "homepage": "http://github.com/6d7a/quito#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

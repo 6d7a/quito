@@ -1,33 +1,32 @@
-package com.rnmqtt
+package com.quito
 
 import android.util.Log
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactContext
-import com.rnmqtt.models.MqttOptions
-import com.rnmqtt.models.MqttSubscription
-import com.rnmqtt.models.PublishOptions
-import com.rnmqtt.models.rnevents.RnMqttEvent.*
-import com.rnmqtt.models.rnevents.RnMqttEventParams.*
-import com.rnmqtt.utils.RnMqttEventEmitter
-import com.rnmqtt.utils.TlsHelpers
+import com.quito.models.MqttOptions
+import com.quito.models.MqttSubscription
+import com.quito.models.PublishOptions
+import com.quito.models.rnevents.QuitoEvent.*
+import com.quito.models.rnevents.QuitoEventParam.*
+import com.quito.utils.QuitoEventEmitter
+import com.quito.utils.TlsHelpers
 import org.eclipse.paho.client.mqttv3.*
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
 
 
-class RnMqtt(
+class Quito(
   private val clientRef: String,
   private val reactContext: ReactContext,
   private val options: MqttOptions
 ) : MqttCallbackExtended {
-  private val eventEmitter = RnMqttEventEmitter(reactContext, clientRef)
+  private val eventEmitter = QuitoEventEmitter(reactContext, clientRef)
   private var client = MqttAsyncClient(
     options.brokerUri,
     "${options.clientId}-${MqttAsyncClient.generateClientId()}",
     MemoryPersistence()
   )
-  private val subscribedTopics: MutableList<MqttSubscription> = mutableListOf()
-  private val tlsHelpers = TlsHelpers(reactContext, eventEmitter, clientRef)
+  private val tlsHelpers = TlsHelpers(eventEmitter, clientRef)
 
   init {
     client.setCallback(this)

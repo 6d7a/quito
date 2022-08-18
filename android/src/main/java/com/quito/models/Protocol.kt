@@ -1,4 +1,4 @@
-package com.rnmqtt.models
+package com.quito.models
 
 enum class Protocol {
   WS {
@@ -7,7 +7,7 @@ enum class Protocol {
   WSS {
     override fun urlPrefix(): String = "wss://"
       },
-  SSL {
+  TCP_TLS {
     override fun urlPrefix(): String = "ssl://"
       },
   TCP {

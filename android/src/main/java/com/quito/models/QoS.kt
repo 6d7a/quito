@@ -1,4 +1,4 @@
-package com.rnmqtt.models
+package com.quito.models
 
 enum class QoS {
   AT_MOST_ONCE,

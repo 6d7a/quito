@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  RnMqttExample
+//  QuitoExample
 //
 
 import Foundation

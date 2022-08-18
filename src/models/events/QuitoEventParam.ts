@@ -1,4 +1,4 @@
-export enum RnMqttEventParams {
+export enum QuitoEventParam {
   SERVER_URI = 'SERVER_URI',
   CLIENT_REF = 'CLIENT_REF',
   ERR_MESSAGE = 'ERR_MESSAGE',

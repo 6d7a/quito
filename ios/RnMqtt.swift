@@ -1,5 +1,5 @@
-@objc(RnMqtt)
-class RnMqtt: NSObject {
+@objc(Quito)
+class Quito: NSObject {
 
     @objc(multiply:withB:withResolver:withRejecter:)
     func multiply(a: Float, b: Float, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {

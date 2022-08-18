@@ -7,18 +7,18 @@
   objects = {
 
 /* Begin PBXBuildFile section */
-    00E356F31AD99517003FC87E /* RnMqttExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RnMqttExampleTests.m */; };
-    09EB680D46FE12310629C227 /* libPods-RnMqttExample-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B56BA239C969F702C63633C7 /* libPods-RnMqttExample-tvOS.a */; };
+    00E356F31AD99517003FC87E /* QuitoExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* QuitoExampleTests.m */; };
+    09EB680D46FE12310629C227 /* libPods-QuitoExample-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B56BA239C969F702C63633C7 /* libPods-QuitoExample-tvOS.a */; };
     13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
     13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
     13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
     2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
     2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
     2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-    2DCD954D1E0B4F2C00145EB5 /* RnMqttExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RnMqttExampleTests.m */; };
-    3DDF5FAE064BC4BFAB015043 /* libPods-RnMqttExample-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6A20A3A2D31400635C17C3 /* libPods-RnMqttExample-tvOSTests.a */; };
-    4C39C56BAD484C67AA576FFA /* libPods-RnMqttExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3E69C5B9553B26FBA2DF04 /* libPods-RnMqttExample.a */; };
-    69AF7E46C79455F135C08478 /* libPods-RnMqttExample-RnMqttExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7533C965B72700ED5E109803 /* libPods-RnMqttExample-RnMqttExampleTests.a */; };
+    2DCD954D1E0B4F2C00145EB5 /* QuitoExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* QuitoExampleTests.m */; };
+    3DDF5FAE064BC4BFAB015043 /* libPods-QuitoExample-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6A20A3A2D31400635C17C3 /* libPods-QuitoExample-tvOSTests.a */; };
+    4C39C56BAD484C67AA576FFA /* libPods-QuitoExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3E69C5B9553B26FBA2DF04 /* libPods-QuitoExample.a */; };
+    69AF7E46C79455F135C08478 /* libPods-QuitoExample-QuitoExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7533C965B72700ED5E109803 /* libPods-QuitoExample-QuitoExampleTests.a */; };
     81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -28,45 +28,45 @@
       containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
       proxyType = 1;
       remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-      remoteInfo = RnMqttExample;
+      remoteInfo = QuitoExample;
     };
     2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
       isa = PBXContainerItemProxy;
       containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
       proxyType = 1;
       remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-      remoteInfo = "RnMqttExample-tvOS";
+      remoteInfo = "QuitoExample-tvOS";
     };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
     008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-    00E356EE1AD99517003FC87E /* RnMqttExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RnMqttExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+    00E356EE1AD99517003FC87E /* QuitoExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitoExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
     00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-    00E356F21AD99517003FC87E /* RnMqttExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RnMqttExampleTests.m; sourceTree = "<group>"; };
-    1172626FD82B50406EC37522 /* Pods-RnMqttExample-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RnMqttExample-tvOSTests/Pods-RnMqttExample-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-    13B07F961A680F5B00A75B9A /* RnMqttExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RnMqttExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-    13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RnMqttExample/AppDelegate.h; sourceTree = "<group>"; };
-    13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RnMqttExample/AppDelegate.m; sourceTree = "<group>"; };
-    13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RnMqttExample/Images.xcassets; sourceTree = "<group>"; };
-    13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RnMqttExample/Info.plist; sourceTree = "<group>"; };
-    13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RnMqttExample/main.m; sourceTree = "<group>"; };
-    20AB94514737C20DFC4350AE /* Pods-RnMqttExample-RnMqttExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample-RnMqttExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-RnMqttExample-RnMqttExampleTests/Pods-RnMqttExample-RnMqttExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-    2D02E47B1E0B4A5D006451C7 /* RnMqttExample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RnMqttExample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-    2D02E4901E0B4A5D006451C7 /* RnMqttExample-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RnMqttExample-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-    47F7ED3B7971BE374F7B8635 /* Pods-RnMqttExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample.debug.xcconfig"; path = "Target Support Files/Pods-RnMqttExample/Pods-RnMqttExample.debug.xcconfig"; sourceTree = "<group>"; };
-    6F6A20A3A2D31400635C17C3 /* libPods-RnMqttExample-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RnMqttExample-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-    7533C965B72700ED5E109803 /* libPods-RnMqttExample-RnMqttExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RnMqttExample-RnMqttExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-    81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RnMqttExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
-    AE69546072F7DC475F196F4C /* Pods-RnMqttExample-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RnMqttExample-tvOS/Pods-RnMqttExample-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-    B56BA239C969F702C63633C7 /* libPods-RnMqttExample-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RnMqttExample-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-    CA3E69C5B9553B26FBA2DF04 /* libPods-RnMqttExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RnMqttExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-    E00ACF0FDA8BF921659E2F9A /* Pods-RnMqttExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample.release.xcconfig"; path = "Target Support Files/Pods-RnMqttExample/Pods-RnMqttExample.release.xcconfig"; sourceTree = "<group>"; };
-    E88D904CC5F3CC947B01AB46 /* Pods-RnMqttExample-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample-tvOS.release.xcconfig"; path = "Target Support Files/Pods-RnMqttExample-tvOS/Pods-RnMqttExample-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-    EC1294380F6AD2F72CA45BA5 /* Pods-RnMqttExample-RnMqttExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample-RnMqttExampleTests.release.xcconfig"; path = "Target Support Files/Pods-RnMqttExample-RnMqttExampleTests/Pods-RnMqttExample-RnMqttExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+    00E356F21AD99517003FC87E /* QuitoExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuitoExampleTests.m; sourceTree = "<group>"; };
+    1172626FD82B50406EC37522 /* Pods-QuitoExample-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-QuitoExample-tvOSTests/Pods-QuitoExample-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+    13B07F961A680F5B00A75B9A /* QuitoExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitoExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = QuitoExample/AppDelegate.h; sourceTree = "<group>"; };
+    13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = QuitoExample/AppDelegate.m; sourceTree = "<group>"; };
+    13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = QuitoExample/Images.xcassets; sourceTree = "<group>"; };
+    13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = QuitoExample/Info.plist; sourceTree = "<group>"; };
+    13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = QuitoExample/main.m; sourceTree = "<group>"; };
+    20AB94514737C20DFC4350AE /* Pods-QuitoExample-QuitoExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample-QuitoExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-QuitoExample-QuitoExampleTests/Pods-QuitoExample-QuitoExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+    2D02E47B1E0B4A5D006451C7 /* QuitoExample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuitoExample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+    2D02E4901E0B4A5D006451C7 /* QuitoExample-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QuitoExample-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+    47F7ED3B7971BE374F7B8635 /* Pods-QuitoExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample.debug.xcconfig"; path = "Target Support Files/Pods-QuitoExample/Pods-QuitoExample.debug.xcconfig"; sourceTree = "<group>"; };
+    6F6A20A3A2D31400635C17C3 /* libPods-QuitoExample-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuitoExample-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+    7533C965B72700ED5E109803 /* libPods-QuitoExample-QuitoExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuitoExample-QuitoExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+    81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = QuitoExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
+    AE69546072F7DC475F196F4C /* Pods-QuitoExample-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-QuitoExample-tvOS/Pods-QuitoExample-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+    B56BA239C969F702C63633C7 /* libPods-QuitoExample-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuitoExample-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+    CA3E69C5B9553B26FBA2DF04 /* libPods-QuitoExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuitoExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+    E00ACF0FDA8BF921659E2F9A /* Pods-QuitoExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample.release.xcconfig"; path = "Target Support Files/Pods-QuitoExample/Pods-QuitoExample.release.xcconfig"; sourceTree = "<group>"; };
+    E88D904CC5F3CC947B01AB46 /* Pods-QuitoExample-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample-tvOS.release.xcconfig"; path = "Target Support Files/Pods-QuitoExample-tvOS/Pods-QuitoExample-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+    EC1294380F6AD2F72CA45BA5 /* Pods-QuitoExample-QuitoExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample-QuitoExampleTests.release.xcconfig"; path = "Target Support Files/Pods-QuitoExample-QuitoExampleTests/Pods-QuitoExample-QuitoExampleTests.release.xcconfig"; sourceTree = "<group>"; };
     ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
     ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-    FFD6887008BEF5F1A6973F45 /* Pods-RnMqttExample-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnMqttExample-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RnMqttExample-tvOSTests/Pods-RnMqttExample-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+    FFD6887008BEF5F1A6973F45 /* Pods-QuitoExample-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuitoExample-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-QuitoExample-tvOSTests/Pods-QuitoExample-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
       isa = PBXFrameworksBuildPhase;
       buildActionMask = 2147483647;
       files = (
-        69AF7E46C79455F135C08478 /* libPods-RnMqttExample-RnMqttExampleTests.a in Frameworks */,
+        69AF7E46C79455F135C08478 /* libPods-QuitoExample-QuitoExampleTests.a in Frameworks */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
@@ -82,7 +82,7 @@
       isa = PBXFrameworksBuildPhase;
       buildActionMask = 2147483647;
       files = (
-        4C39C56BAD484C67AA576FFA /* libPods-RnMqttExample.a in Frameworks */,
+        4C39C56BAD484C67AA576FFA /* libPods-QuitoExample.a in Frameworks */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
@@ -90,7 +90,7 @@
       isa = PBXFrameworksBuildPhase;
       buildActionMask = 2147483647;
       files = (
-        09EB680D46FE12310629C227 /* libPods-RnMqttExample-tvOS.a in Frameworks */,
+        09EB680D46FE12310629C227 /* libPods-QuitoExample-tvOS.a in Frameworks */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
@@ -98,20 +98,20 @@
       isa = PBXFrameworksBuildPhase;
       buildActionMask = 2147483647;
       files = (
-        3DDF5FAE064BC4BFAB015043 /* libPods-RnMqttExample-tvOSTests.a in Frameworks */,
+        3DDF5FAE064BC4BFAB015043 /* libPods-QuitoExample-tvOSTests.a in Frameworks */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-    00E356EF1AD99517003FC87E /* RnMqttExampleTests */ = {
+    00E356EF1AD99517003FC87E /* QuitoExampleTests */ = {
       isa = PBXGroup;
       children = (
-        00E356F21AD99517003FC87E /* RnMqttExampleTests.m */,
+        00E356F21AD99517003FC87E /* QuitoExampleTests.m */,
         00E356F01AD99517003FC87E /* Supporting Files */,
       );
-      path = RnMqttExampleTests;
+      path = QuitoExampleTests;
       sourceTree = "<group>";
     };
     00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -122,7 +122,7 @@
       name = "Supporting Files";
       sourceTree = "<group>";
     };
-    13B07FAE1A68108700A75B9A /* RnMqttExample */ = {
+    13B07FAE1A68108700A75B9A /* QuitoExample */ = {
       isa = PBXGroup;
       children = (
         008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -133,7 +133,7 @@
         81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
         13B07FB71A68108700A75B9A /* main.m */,
       );
-      name = RnMqttExample;
+      name = QuitoExample;
       sourceTree = "<group>";
     };
     2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -141,10 +141,10 @@
       children = (
         ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
         ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-        CA3E69C5B9553B26FBA2DF04 /* libPods-RnMqttExample.a */,
-        7533C965B72700ED5E109803 /* libPods-RnMqttExample-RnMqttExampleTests.a */,
-        B56BA239C969F702C63633C7 /* libPods-RnMqttExample-tvOS.a */,
-        6F6A20A3A2D31400635C17C3 /* libPods-RnMqttExample-tvOSTests.a */,
+        CA3E69C5B9553B26FBA2DF04 /* libPods-QuitoExample.a */,
+        7533C965B72700ED5E109803 /* libPods-QuitoExample-QuitoExampleTests.a */,
+        B56BA239C969F702C63633C7 /* libPods-QuitoExample-tvOS.a */,
+        6F6A20A3A2D31400635C17C3 /* libPods-QuitoExample-tvOSTests.a */,
       );
       name = Frameworks;
       sourceTree = "<group>";
@@ -152,14 +152,14 @@
     6B9684456A2045ADE5A6E47E /* Pods */ = {
       isa = PBXGroup;
       children = (
-        47F7ED3B7971BE374F7B8635 /* Pods-RnMqttExample.debug.xcconfig */,
-        E00ACF0FDA8BF921659E2F9A /* Pods-RnMqttExample.release.xcconfig */,
-        20AB94514737C20DFC4350AE /* Pods-RnMqttExample-RnMqttExampleTests.debug.xcconfig */,
-        EC1294380F6AD2F72CA45BA5 /* Pods-RnMqttExample-RnMqttExampleTests.release.xcconfig */,
-        AE69546072F7DC475F196F4C /* Pods-RnMqttExample-tvOS.debug.xcconfig */,
-        E88D904CC5F3CC947B01AB46 /* Pods-RnMqttExample-tvOS.release.xcconfig */,
-        FFD6887008BEF5F1A6973F45 /* Pods-RnMqttExample-tvOSTests.debug.xcconfig */,
-        1172626FD82B50406EC37522 /* Pods-RnMqttExample-tvOSTests.release.xcconfig */,
+        47F7ED3B7971BE374F7B8635 /* Pods-QuitoExample.debug.xcconfig */,
+        E00ACF0FDA8BF921659E2F9A /* Pods-QuitoExample.release.xcconfig */,
+        20AB94514737C20DFC4350AE /* Pods-QuitoExample-QuitoExampleTests.debug.xcconfig */,
+        EC1294380F6AD2F72CA45BA5 /* Pods-QuitoExample-QuitoExampleTests.release.xcconfig */,
+        AE69546072F7DC475F196F4C /* Pods-QuitoExample-tvOS.debug.xcconfig */,
+        E88D904CC5F3CC947B01AB46 /* Pods-QuitoExample-tvOS.release.xcconfig */,
+        FFD6887008BEF5F1A6973F45 /* Pods-QuitoExample-tvOSTests.debug.xcconfig */,
+        1172626FD82B50406EC37522 /* Pods-QuitoExample-tvOSTests.release.xcconfig */,
       );
       name = Pods;
       path = Pods;
@@ -175,9 +175,9 @@
     83CBB9F61A601CBA00E9B192 = {
       isa = PBXGroup;
       children = (
-        13B07FAE1A68108700A75B9A /* RnMqttExample */,
+        13B07FAE1A68108700A75B9A /* QuitoExample */,
         832341AE1AAA6A7D00B99B32 /* Libraries */,
-        00E356EF1AD99517003FC87E /* RnMqttExampleTests */,
+        00E356EF1AD99517003FC87E /* QuitoExampleTests */,
         83CBBA001A601CBA00E9B192 /* Products */,
         2D16E6871FA4F8E400B85C8A /* Frameworks */,
         6B9684456A2045ADE5A6E47E /* Pods */,
@@ -190,10 +190,10 @@
     83CBBA001A601CBA00E9B192 /* Products */ = {
       isa = PBXGroup;
       children = (
-        13B07F961A680F5B00A75B9A /* RnMqttExample.app */,
-        00E356EE1AD99517003FC87E /* RnMqttExampleTests.xctest */,
-        2D02E47B1E0B4A5D006451C7 /* RnMqttExample-tvOS.app */,
-        2D02E4901E0B4A5D006451C7 /* RnMqttExample-tvOSTests.xctest */,
+        13B07F961A680F5B00A75B9A /* QuitoExample.app */,
+        00E356EE1AD99517003FC87E /* QuitoExampleTests.xctest */,
+        2D02E47B1E0B4A5D006451C7 /* QuitoExample-tvOS.app */,
+        2D02E4901E0B4A5D006451C7 /* QuitoExample-tvOSTests.xctest */,
       );
       name = Products;
       sourceTree = "<group>";
@@ -201,9 +201,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-    00E356ED1AD99517003FC87E /* RnMqttExampleTests */ = {
+    00E356ED1AD99517003FC87E /* QuitoExampleTests */ = {
       isa = PBXNativeTarget;
-      buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RnMqttExampleTests" */;
+      buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "QuitoExampleTests" */;
       buildPhases = (
         3BD00D8DB48E257517D6B951 /* [CP] Check Pods Manifest.lock */,
         00E356EA1AD99517003FC87E /* Sources */,
@@ -216,14 +216,14 @@
       dependencies = (
         00E356F51AD99517003FC87E /* PBXTargetDependency */,
       );
-      name = RnMqttExampleTests;
-      productName = RnMqttExampleTests;
-      productReference = 00E356EE1AD99517003FC87E /* RnMqttExampleTests.xctest */;
+      name = QuitoExampleTests;
+      productName = QuitoExampleTests;
+      productReference = 00E356EE1AD99517003FC87E /* QuitoExampleTests.xctest */;
       productType = "com.apple.product-type.bundle.unit-test";
     };
-    13B07F861A680F5B00A75B9A /* RnMqttExample */ = {
+    13B07F861A680F5B00A75B9A /* QuitoExample */ = {
       isa = PBXNativeTarget;
-      buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RnMqttExample" */;
+      buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "QuitoExample" */;
       buildPhases = (
         4F0A6FC082772762E3E4C96C /* [CP] Check Pods Manifest.lock */,
         FD10A7F022414F080027D42C /* Start Packager */,
@@ -237,14 +237,14 @@
       );
       dependencies = (
       );
-      name = RnMqttExample;
-      productName = RnMqttExample;
-      productReference = 13B07F961A680F5B00A75B9A /* RnMqttExample.app */;
+      name = QuitoExample;
+      productName = QuitoExample;
+      productReference = 13B07F961A680F5B00A75B9A /* QuitoExample.app */;
       productType = "com.apple.product-type.application";
     };
-    2D02E47A1E0B4A5D006451C7 /* RnMqttExample-tvOS */ = {
+    2D02E47A1E0B4A5D006451C7 /* QuitoExample-tvOS */ = {
       isa = PBXNativeTarget;
-      buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RnMqttExample-tvOS" */;
+      buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "QuitoExample-tvOS" */;
       buildPhases = (
         87811D0F8FEC6FC2E70EDF88 /* [CP] Check Pods Manifest.lock */,
         FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -257,14 +257,14 @@
       );
       dependencies = (
       );
-      name = "RnMqttExample-tvOS";
-      productName = "RnMqttExample-tvOS";
-      productReference = 2D02E47B1E0B4A5D006451C7 /* RnMqttExample-tvOS.app */;
+      name = "QuitoExample-tvOS";
+      productName = "QuitoExample-tvOS";
+      productReference = 2D02E47B1E0B4A5D006451C7 /* QuitoExample-tvOS.app */;
       productType = "com.apple.product-type.application";
     };
-    2D02E48F1E0B4A5D006451C7 /* RnMqttExample-tvOSTests */ = {
+    2D02E48F1E0B4A5D006451C7 /* QuitoExample-tvOSTests */ = {
       isa = PBXNativeTarget;
-      buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RnMqttExample-tvOSTests" */;
+      buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "QuitoExample-tvOSTests" */;
       buildPhases = (
         A1191D9E34FEA625352E7BA9 /* [CP] Check Pods Manifest.lock */,
         2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -276,9 +276,9 @@
       dependencies = (
         2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
       );
-      name = "RnMqttExample-tvOSTests";
-      productName = "RnMqttExample-tvOSTests";
-      productReference = 2D02E4901E0B4A5D006451C7 /* RnMqttExample-tvOSTests.xctest */;
+      name = "QuitoExample-tvOSTests";
+      productName = "QuitoExample-tvOSTests";
+      productReference = 2D02E4901E0B4A5D006451C7 /* QuitoExample-tvOSTests.xctest */;
       productType = "com.apple.product-type.bundle.unit-test";
     };
 /* End PBXNativeTarget section */
@@ -307,7 +307,7 @@
           };
         };
       };
-      buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "RnMqttExample" */;
+      buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "QuitoExample" */;
       compatibilityVersion = "Xcode 3.2";
       developmentRegion = en;
       hasScannedForEncodings = 0;
@@ -320,10 +320,10 @@
       projectDirPath = "";
       projectRoot = "";
       targets = (
-        13B07F861A680F5B00A75B9A /* RnMqttExample */,
-        00E356ED1AD99517003FC87E /* RnMqttExampleTests */,
-        2D02E47A1E0B4A5D006451C7 /* RnMqttExample-tvOS */,
-        2D02E48F1E0B4A5D006451C7 /* RnMqttExample-tvOSTests */,
+        13B07F861A680F5B00A75B9A /* QuitoExample */,
+        00E356ED1AD99517003FC87E /* QuitoExampleTests */,
+        2D02E47A1E0B4A5D006451C7 /* QuitoExample-tvOS */,
+        2D02E48F1E0B4A5D006451C7 /* QuitoExample-tvOSTests */,
       );
     };
 /* End PBXProject section */
@@ -406,7 +406,7 @@
       outputFileListPaths = (
       );
       outputPaths = (
-        "$(DERIVED_FILE_DIR)/Pods-RnMqttExample-RnMqttExampleTests-checkManifestLockResult.txt",
+        "$(DERIVED_FILE_DIR)/Pods-QuitoExample-QuitoExampleTests-checkManifestLockResult.txt",
       );
       runOnlyForDeploymentPostprocessing = 0;
       shellPath = /bin/sh;
@@ -419,7 +419,7 @@
       files = (
       );
       inputPaths = (
-        "${PODS_ROOT}/Target Support Files/Pods-RnMqttExample-RnMqttExampleTests/Pods-RnMqttExample-RnMqttExampleTests-resources.sh",
+        "${PODS_ROOT}/Target Support Files/Pods-QuitoExample-QuitoExampleTests/Pods-QuitoExample-QuitoExampleTests-resources.sh",
         "${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
       );
       name = "[CP] Copy Pods Resources";
@@ -428,7 +428,7 @@
       );
       runOnlyForDeploymentPostprocessing = 0;
       shellPath = /bin/sh;
-      shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RnMqttExample-RnMqttExampleTests/Pods-RnMqttExample-RnMqttExampleTests-resources.sh\"\n";
+      shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuitoExample-QuitoExampleTests/Pods-QuitoExample-QuitoExampleTests-resources.sh\"\n";
       showEnvVarsInLog = 0;
     };
     4F0A6FC082772762E3E4C96C /* [CP] Check Pods Manifest.lock */ = {
@@ -446,7 +446,7 @@
       outputFileListPaths = (
       );
       outputPaths = (
-        "$(DERIVED_FILE_DIR)/Pods-RnMqttExample-checkManifestLockResult.txt",
+        "$(DERIVED_FILE_DIR)/Pods-QuitoExample-checkManifestLockResult.txt",
       );
       runOnlyForDeploymentPostprocessing = 0;
       shellPath = /bin/sh;
@@ -468,7 +468,7 @@
       outputFileListPaths = (
       );
       outputPaths = (
-        "$(DERIVED_FILE_DIR)/Pods-RnMqttExample-tvOS-checkManifestLockResult.txt",
+        "$(DERIVED_FILE_DIR)/Pods-QuitoExample-tvOS-checkManifestLockResult.txt",
       );
       runOnlyForDeploymentPostprocessing = 0;
       shellPath = /bin/sh;
@@ -490,7 +490,7 @@
       outputFileListPaths = (
       );
       outputPaths = (
-        "$(DERIVED_FILE_DIR)/Pods-RnMqttExample-tvOSTests-checkManifestLockResult.txt",
+        "$(DERIVED_FILE_DIR)/Pods-QuitoExample-tvOSTests-checkManifestLockResult.txt",
       );
       runOnlyForDeploymentPostprocessing = 0;
       shellPath = /bin/sh;
@@ -503,7 +503,7 @@
       files = (
       );
       inputPaths = (
-        "${PODS_ROOT}/Target Support Files/Pods-RnMqttExample/Pods-RnMqttExample-resources.sh",
+        "${PODS_ROOT}/Target Support Files/Pods-QuitoExample/Pods-QuitoExample-resources.sh",
         "${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
       );
       name = "[CP] Copy Pods Resources";
@@ -512,7 +512,7 @@
       );
       runOnlyForDeploymentPostprocessing = 0;
       shellPath = /bin/sh;
-      shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RnMqttExample/Pods-RnMqttExample-resources.sh\"\n";
+      shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuitoExample/Pods-QuitoExample-resources.sh\"\n";
       showEnvVarsInLog = 0;
     };
     FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -560,7 +560,7 @@
       isa = PBXSourcesBuildPhase;
       buildActionMask = 2147483647;
       files = (
-        00E356F31AD99517003FC87E /* RnMqttExampleTests.m in Sources */,
+        00E356F31AD99517003FC87E /* QuitoExampleTests.m in Sources */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
@@ -586,7 +586,7 @@
       isa = PBXSourcesBuildPhase;
       buildActionMask = 2147483647;
       files = (
-        2DCD954D1E0B4F2C00145EB5 /* RnMqttExampleTests.m in Sources */,
+        2DCD954D1E0B4F2C00145EB5 /* QuitoExampleTests.m in Sources */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
@@ -595,12 +595,12 @@
 /* Begin PBXTargetDependency section */
     00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
       isa = PBXTargetDependency;
-      target = 13B07F861A680F5B00A75B9A /* RnMqttExample */;
+      target = 13B07F861A680F5B00A75B9A /* QuitoExample */;
       targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
     };
     2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
       isa = PBXTargetDependency;
-      target = 2D02E47A1E0B4A5D006451C7 /* RnMqttExample-tvOS */;
+      target = 2D02E47A1E0B4A5D006451C7 /* QuitoExample-tvOS */;
       targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
     };
 /* End PBXTargetDependency section */
@@ -608,14 +608,14 @@
 /* Begin XCBuildConfiguration section */
     00E356F61AD99517003FC87E /* Debug */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = 20AB94514737C20DFC4350AE /* Pods-RnMqttExample-RnMqttExampleTests.debug.xcconfig */;
+      baseConfigurationReference = 20AB94514737C20DFC4350AE /* Pods-QuitoExample-QuitoExampleTests.debug.xcconfig */;
       buildSettings = {
         BUNDLE_LOADER = "$(TEST_HOST)";
         GCC_PREPROCESSOR_DEFINITIONS = (
           "DEBUG=1",
           "$(inherited)",
         );
-        INFOPLIST_FILE = RnMqttExampleTests/Info.plist;
+        INFOPLIST_FILE = QuitoExampleTests/Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 10.0;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
         OTHER_LDFLAGS = (
@@ -623,19 +623,19 @@
           "-lc++",
           "$(inherited)",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "com.example.rnmqtt";
+        PRODUCT_BUNDLE_IDENTIFIER = "com.example.quito";
         PRODUCT_NAME = "$(TARGET_NAME)";
-        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RnMqttExample.app/RnMqttExample";
+        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuitoExample.app/QuitoExample";
       };
       name = Debug;
     };
     00E356F71AD99517003FC87E /* Release */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = EC1294380F6AD2F72CA45BA5 /* Pods-RnMqttExample-RnMqttExampleTests.release.xcconfig */;
+      baseConfigurationReference = EC1294380F6AD2F72CA45BA5 /* Pods-QuitoExample-QuitoExampleTests.release.xcconfig */;
       buildSettings = {
         BUNDLE_LOADER = "$(TEST_HOST)";
         COPY_PHASE_STRIP = NO;
-        INFOPLIST_FILE = RnMqttExampleTests/Info.plist;
+        INFOPLIST_FILE = QuitoExampleTests/Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 10.0;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
         OTHER_LDFLAGS = (
@@ -643,29 +643,29 @@
           "-lc++",
           "$(inherited)",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "com.example.rnmqtt";
+        PRODUCT_BUNDLE_IDENTIFIER = "com.example.quito";
         PRODUCT_NAME = "$(TARGET_NAME)";
-        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RnMqttExample.app/RnMqttExample";
+        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuitoExample.app/QuitoExample";
       };
       name = Release;
     };
     13B07F941A680F5B00A75B9A /* Debug */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = 47F7ED3B7971BE374F7B8635 /* Pods-RnMqttExample.debug.xcconfig */;
+      baseConfigurationReference = 47F7ED3B7971BE374F7B8635 /* Pods-QuitoExample.debug.xcconfig */;
       buildSettings = {
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
         CLANG_ENABLE_MODULES = YES;
         CURRENT_PROJECT_VERSION = 1;
         ENABLE_BITCODE = NO;
-        INFOPLIST_FILE = RnMqttExample/Info.plist;
+        INFOPLIST_FILE = QuitoExample/Info.plist;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         OTHER_LDFLAGS = (
           "$(inherited)",
           "-ObjC",
           "-lc++",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "com.example.rnmqtt";
-        PRODUCT_NAME = RnMqttExample;
+        PRODUCT_BUNDLE_IDENTIFIER = "com.example.quito";
+        PRODUCT_NAME = QuitoExample;
         SWIFT_OPTIMIZATION_LEVEL = "-Onone";
         SWIFT_VERSION = 5.0;
         VERSIONING_SYSTEM = "apple-generic";
@@ -674,20 +674,20 @@
     };
     13B07F951A680F5B00A75B9A /* Release */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = E00ACF0FDA8BF921659E2F9A /* Pods-RnMqttExample.release.xcconfig */;
+      baseConfigurationReference = E00ACF0FDA8BF921659E2F9A /* Pods-QuitoExample.release.xcconfig */;
       buildSettings = {
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
         CLANG_ENABLE_MODULES = YES;
         CURRENT_PROJECT_VERSION = 1;
-        INFOPLIST_FILE = RnMqttExample/Info.plist;
+        INFOPLIST_FILE = QuitoExample/Info.plist;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         OTHER_LDFLAGS = (
           "$(inherited)",
           "-ObjC",
           "-lc++",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "com.example.rnmqtt";
-        PRODUCT_NAME = RnMqttExample;
+        PRODUCT_BUNDLE_IDENTIFIER = "com.example.quito";
+        PRODUCT_NAME = QuitoExample;
         SWIFT_VERSION = 5.0;
         VERSIONING_SYSTEM = "apple-generic";
       };
@@ -695,7 +695,7 @@
     };
     2D02E4971E0B4A5E006451C7 /* Debug */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = AE69546072F7DC475F196F4C /* Pods-RnMqttExample-tvOS.debug.xcconfig */;
+      baseConfigurationReference = AE69546072F7DC475F196F4C /* Pods-QuitoExample-tvOS.debug.xcconfig */;
       buildSettings = {
         ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -706,14 +706,14 @@
         DEBUG_INFORMATION_FORMAT = dwarf;
         ENABLE_TESTABILITY = YES;
         GCC_NO_COMMON_BLOCKS = YES;
-        INFOPLIST_FILE = "RnMqttExample-tvOS/Info.plist";
+        INFOPLIST_FILE = "QuitoExample-tvOS/Info.plist";
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         OTHER_LDFLAGS = (
           "$(inherited)",
           "-ObjC",
           "-lc++",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.RnMqttExample-tvOS";
+        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.QuitoExample-tvOS";
         PRODUCT_NAME = "$(TARGET_NAME)";
         SDKROOT = appletvos;
         TARGETED_DEVICE_FAMILY = 3;
@@ -723,7 +723,7 @@
     };
     2D02E4981E0B4A5E006451C7 /* Release */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = E88D904CC5F3CC947B01AB46 /* Pods-RnMqttExample-tvOS.release.xcconfig */;
+      baseConfigurationReference = E88D904CC5F3CC947B01AB46 /* Pods-QuitoExample-tvOS.release.xcconfig */;
       buildSettings = {
         ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
         ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -734,14 +734,14 @@
         COPY_PHASE_STRIP = NO;
         DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
         GCC_NO_COMMON_BLOCKS = YES;
-        INFOPLIST_FILE = "RnMqttExample-tvOS/Info.plist";
+        INFOPLIST_FILE = "QuitoExample-tvOS/Info.plist";
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         OTHER_LDFLAGS = (
           "$(inherited)",
           "-ObjC",
           "-lc++",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.RnMqttExample-tvOS";
+        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.QuitoExample-tvOS";
         PRODUCT_NAME = "$(TARGET_NAME)";
         SDKROOT = appletvos;
         TARGETED_DEVICE_FAMILY = 3;
@@ -751,7 +751,7 @@
     };
     2D02E4991E0B4A5E006451C7 /* Debug */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = FFD6887008BEF5F1A6973F45 /* Pods-RnMqttExample-tvOSTests.debug.xcconfig */;
+      baseConfigurationReference = FFD6887008BEF5F1A6973F45 /* Pods-QuitoExample-tvOSTests.debug.xcconfig */;
       buildSettings = {
         BUNDLE_LOADER = "$(TEST_HOST)";
         CLANG_ANALYZER_NONNULL = YES;
@@ -761,24 +761,24 @@
         DEBUG_INFORMATION_FORMAT = dwarf;
         ENABLE_TESTABILITY = YES;
         GCC_NO_COMMON_BLOCKS = YES;
-        INFOPLIST_FILE = "RnMqttExample-tvOSTests/Info.plist";
+        INFOPLIST_FILE = "QuitoExample-tvOSTests/Info.plist";
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
         OTHER_LDFLAGS = (
           "$(inherited)",
           "-ObjC",
           "-lc++",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.RnMqttExample-tvOSTests";
+        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.QuitoExample-tvOSTests";
         PRODUCT_NAME = "$(TARGET_NAME)";
         SDKROOT = appletvos;
-        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RnMqttExample-tvOS.app/RnMqttExample-tvOS";
+        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuitoExample-tvOS.app/QuitoExample-tvOS";
         TVOS_DEPLOYMENT_TARGET = 10.1;
       };
       name = Debug;
     };
     2D02E49A1E0B4A5E006451C7 /* Release */ = {
       isa = XCBuildConfiguration;
-      baseConfigurationReference = 1172626FD82B50406EC37522 /* Pods-RnMqttExample-tvOSTests.release.xcconfig */;
+      baseConfigurationReference = 1172626FD82B50406EC37522 /* Pods-QuitoExample-tvOSTests.release.xcconfig */;
       buildSettings = {
         BUNDLE_LOADER = "$(TEST_HOST)";
         CLANG_ANALYZER_NONNULL = YES;
@@ -788,17 +788,17 @@
         COPY_PHASE_STRIP = NO;
         DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
         GCC_NO_COMMON_BLOCKS = YES;
-        INFOPLIST_FILE = "RnMqttExample-tvOSTests/Info.plist";
+        INFOPLIST_FILE = "QuitoExample-tvOSTests/Info.plist";
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
         OTHER_LDFLAGS = (
           "$(inherited)",
           "-ObjC",
           "-lc++",
         );
-        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.RnMqttExample-tvOSTests";
+        PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.QuitoExample-tvOSTests";
         PRODUCT_NAME = "$(TARGET_NAME)";
         SDKROOT = appletvos;
-        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RnMqttExample-tvOS.app/RnMqttExample-tvOS";
+        TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuitoExample-tvOS.app/QuitoExample-tvOS";
         TVOS_DEPLOYMENT_TARGET = 10.1;
       };
       name = Release;
@@ -919,7 +919,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-    00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RnMqttExampleTests" */ = {
+    00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "QuitoExampleTests" */ = {
       isa = XCConfigurationList;
       buildConfigurations = (
         00E356F61AD99517003FC87E /* Debug */,
@@ -928,7 +928,7 @@
       defaultConfigurationIsVisible = 0;
       defaultConfigurationName = Release;
     };
-    13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RnMqttExample" */ = {
+    13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "QuitoExample" */ = {
       isa = XCConfigurationList;
       buildConfigurations = (
         13B07F941A680F5B00A75B9A /* Debug */,
@@ -937,7 +937,7 @@
       defaultConfigurationIsVisible = 0;
       defaultConfigurationName = Release;
     };
-    2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RnMqttExample-tvOS" */ = {
+    2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "QuitoExample-tvOS" */ = {
       isa = XCConfigurationList;
       buildConfigurations = (
         2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -946,7 +946,7 @@
       defaultConfigurationIsVisible = 0;
       defaultConfigurationName = Release;
     };
-    2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "RnMqttExample-tvOSTests" */ = {
+    2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "QuitoExample-tvOSTests" */ = {
       isa = XCConfigurationList;
       buildConfigurations = (
         2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -955,7 +955,7 @@
       defaultConfigurationIsVisible = 0;
       defaultConfigurationName = Release;
     };
-    83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "RnMqttExample" */ = {
+    83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "QuitoExample" */ = {
       isa = XCConfigurationList;
       buildConfigurations = (
         83CBBA201A601CBA00E9B192 /* Debug */,

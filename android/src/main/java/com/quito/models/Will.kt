@@ -1,9 +1,9 @@
-package com.rnmqtt.models
+package com.quito.models
 
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReadableMap
-import com.rnmqtt.utils.getOr
-import com.rnmqtt.utils.hexToBytes
+import com.quito.utils.getOr
+import com.quito.utils.hexToBytes
 
 data class Will(
   val topic: String,

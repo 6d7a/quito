@@ -1,4 +1,4 @@
-package com.rnmqtt.models
+package com.quito.models
 
 data class MqttSubscription(
   val topic: String,

@@ -1,7 +1,7 @@
 import type { Buffer } from 'buffer/';
 import type { QoS } from './QoS';
 
-export type RnMqttWill = {
+export type Will = {
   topic: string;
   payload: Buffer;
   qos: QoS;

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "rn-mqtt": ["./src/index"]
+      "quito": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

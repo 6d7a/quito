@@ -1,16 +1,16 @@
-# RN-MQTT
+# Quito
 
 A TCP-capable MQTT client for React Native. The module provides a Typescript API for native MQTT clients on iOS and Android.
 
-- on Android, rn-mqtt relies on [Paho](https://www.eclipse.org/paho/index.php?page=clients/java/index.php)
-- ~~on iOS, rn-mqtt uses [CocoaMQTT](https://github.com/emqx/CocoaMQTT)~~
+- on Android, quito relies on [Paho](https://www.eclipse.org/paho/index.php?page=clients/java/index.php)
+- ~~on iOS, quito uses [CocoaMQTT](https://github.com/emqx/CocoaMQTT)~~
 
 The module provides both promise- and callback-based methods to interact with the native clients.
 
 ## Installation
 
 ```sh
-npm install rn-mqtt
+npm install quito
 ```
 
 To make an unencrypted connection to an MQTT broker, make sure a consuming android application allows cleartext traffic, either generally by setting the _android:usesCleartextTraffic_ flag in the application field of the AndroidManifest.xml, or by adding a [security configuration](https://developer.android.com/training/articles/security-config).
@@ -22,9 +22,9 @@ The module provides promise- and callback-based methods to interact with the nat
 #### Callback-based usage
 
 ```typescript
-import { RnMqtt } from 'rn-mqtt';
+import { Quito } from 'quito';
 
-const MqttClient = new RnMqtt({
+const MqttClient = new Quito({
   clientId: 'my-mqtt-client-over-tcp',
   uri: 'mqtt://test.mosquitto.org:1883',
   host: 'test.mosquitto.org', // optional, will be read from uri string if not provided, or default to "localhost"
@@ -38,34 +38,34 @@ const MqttClient = new RnMqtt({
 MqttClient.init() // call init() to create native client and set up native event listeners
   .then(() => {
     // Subscribing to event callbacks
-    MqttClient.on(RnMqttEvent.CONNECTING, () => {
+    MqttClient.on(QuitoEvent.CONNECTING, () => {
       // called when client is connecting
     });
-    MqttClient.on(RnMqttEvent.CONNECTED, () => {
+    MqttClient.on(QuitoEvent.CONNECTED, () => {
       // called when client is connected
     });
-    MqttClient.on(RnMqttEvent.SUBSCRIBED, (topic: string) => {
+    MqttClient.on(QuitoEvent.SUBSCRIBED, (topic: string) => {
       // called when client has subscribed to a topic
     });
-    MqttClient.on(RnMqttEvent.UNSUBSCRIBED, (topic: string) => {
+    MqttClient.on(QuitoEvent.UNSUBSCRIBED, (topic: string) => {
       // called when client has unsubscribed from a topic
     });
-    MqttClient.on(RnMqttEvent.MESSAGE_RECEIVED, (topic: string, payload: Buffer) => {
+    MqttClient.on(QuitoEvent.MESSAGE_RECEIVED, (topic: string, payload: Buffer) => {
       // called when client has received a message
     });
-    MqttClient.on(RnMqttEvent.MESSAGE_PUBLISHED, () => {
+    MqttClient.on(QuitoEvent.MESSAGE_PUBLISHED, () => {
       // called when client has sent a message
     });
-    MqttClient.on(RnMqttEvent.DISCONNECTED, () => {
+    MqttClient.on(QuitoEvent.DISCONNECTED, () => {
       // called when client has disconnected
     });
-    MqttClient.on(RnMqttEvent.CONNECTION_LOST, (error?: Error) => {
+    MqttClient.on(QuitoEvent.CONNECTION_LOST, (error?: Error) => {
       // called when client has unexpectedly lost its connection to the broker
     });
-    MqttClient.on(RnMqttEvent.EXCEPTION, (error: Error) => {
+    MqttClient.on(QuitoEvent.EXCEPTION, (error: Error) => {
       // called when client encountered an error
     });
-    MqttClient.on(RnMqttEvent.CLOSED, (error?: Error) => {
+    MqttClient.on(QuitoEvent.CLOSED, (error?: Error) => {
       // called when client was closed
     });
 
@@ -110,9 +110,9 @@ MqttClient.init() // call init() to create native client and set up native event
 #### Promise-based usage
 
 ```typescript
-import { RnMqtt } from 'rn-mqtt';
+import { Quito } from 'quito';
 
-const MqttClient = new RnMqtt({
+const MqttClient = new Quito({
   clientId: 'my-mqtt-client-over-tcp',
   uri: 'mqtt://test.mosquitto.org:1883',
   host: 'test.mosquitto.org', // optional, will be read from uri string if not provided, or default to "localhost"
@@ -127,13 +127,13 @@ await MqttClient.init(); // call init() to create native client and set up nativ
 
 // Most message callbacks are redundant 
 // when using the Promise-based API
-MqttClient.on(RnMqttEvent.MESSAGE_RECEIVED, (topic: string, payload: Buffer) => {
+MqttClient.on(QuitoEvent.MESSAGE_RECEIVED, (topic: string, payload: Buffer) => {
   // called when client has received a message
 });
-MqttClient.on(RnMqttEvent.CONNECTION_LOST, (error?: Error) => {
+MqttClient.on(QuitoEvent.CONNECTION_LOST, (error?: Error) => {
   // called when client has unexpectedly lost its connection to the broker
 });
-MqttClient.on(RnMqttEvent.EXCEPTION, (error: Error) => {
+MqttClient.on(QuitoEvent.EXCEPTION, (error: Error) => {
   // called when client encountered an error
 });
 

@@ -1,42 +1,41 @@
-package com.rnmqtt
+package com.quito
 
 import android.util.Log
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.rnmqtt.models.MqttOptions
-import com.rnmqtt.models.MqttSubscription
-import com.rnmqtt.models.PublishOptions
-import com.rnmqtt.models.QoS
-import com.rnmqtt.models.rnevents.RnMqttEvent
+import com.quito.models.MqttOptions
+import com.quito.models.MqttSubscription
+import com.quito.models.PublishOptions
+import com.quito.models.QoS
+import com.quito.models.rnevents.QuitoEvent
 import kotlin.collections.HashMap
-import com.rnmqtt.utils.createClientReference
-import com.rnmqtt.utils.getOr
+import com.quito.utils.createClientReference
 
-class RnMqttModule(private val reactContext: ReactApplicationContext) :
+class QuitoModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
-  private val clients = HashMap<String, RnMqtt>()
+  private val clients = HashMap<String, Quito>()
 
   override fun getName(): String {
-    return "RnMqtt"
+    return "Quito"
   }
 
   @ReactMethod
   fun addListener(eventName: String?) {
     // Upstream listeners
-    Log.d("RnMqtt", "added Listener: $eventName")
+    Log.d("Quito", "added Listener: $eventName")
   }
 
   @ReactMethod
   fun removeListeners(count: Int?) {
     // Remove upstream listeners
-    Log.d("RnMqtt", "removed $count listeners")
+    Log.d("Quito", "removed $count listeners")
   }
 
   @ReactMethod
   fun createClient(options: ReadableMap, promise: Promise) {
     val clientRef = createClientReference()
     try {
-      val client = RnMqtt(clientRef, reactContext, MqttOptions(options))
+      val client = Quito(clientRef, reactContext, MqttOptions(options))
       clients[clientRef] = client
       promise.resolve(clientRef)
     } catch (e: Throwable) {
@@ -109,14 +108,14 @@ class RnMqttModule(private val reactContext: ReactApplicationContext) :
     withAssertedClient(clientRef) { it.reconnect() }
   }
 
-  private fun <R> withAssertedClient(clientRef: String, functor: (RnMqtt) -> R): R? {
+  private fun <R> withAssertedClient(clientRef: String, functor: (Quito) -> R): R? {
     return if (clients[clientRef] != null) {
       clients[clientRef]!!.let(functor)
     } else {
       val params = Arguments.createMap()
       params.putString("clientRef", clientRef)
       reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-        .emit(RnMqttEvent.CLIENT_REF_UNKNOWN.name, params)
+        .emit(QuitoEvent.CLIENT_REF_UNKNOWN.name, params)
       null
     }
   }

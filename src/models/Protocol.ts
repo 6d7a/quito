@@ -1,6 +1,6 @@
 export enum Protocol {
   TCP = 'TCP',
-  SSL = 'SSL',
+  TCP_TLS = 'TCP_TLS',
   WS = 'WS',
   WSS = 'WSS',
 }

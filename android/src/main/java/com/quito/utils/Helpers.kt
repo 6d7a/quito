@@ -1,4 +1,4 @@
-package com.rnmqtt.utils
+package com.quito.utils
 
 import android.util.Log
 import com.facebook.react.bridge.*
@@ -18,7 +18,7 @@ fun<T> ReadableMap.getOr(field: String, default: T): T {
       ReadableType.Null -> default
     }
   } catch (e: Throwable) {
-    Log.d("RnMqtt", "failed to read field of ReadableMap: ${e.message}")
+    Log.d("Quito", "failed to read field of ReadableMap: ${e.message}")
     default
   }
 }

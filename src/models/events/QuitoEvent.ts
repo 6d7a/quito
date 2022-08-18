@@ -1,4 +1,4 @@
-export enum RnMqttEvent {
+export enum QuitoEvent {
   EXCEPTION = 'EXCEPTION',
   RECONNECT = 'RECONNECT',
   CONNECTING = 'CONNECTING',

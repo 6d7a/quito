@@ -1,6 +1,6 @@
-package com.rnmqtt.models.rnevents
+package com.quito.models.rnevents
 
-enum class RnMqttEvent {
+enum class QuitoEvent {
   EXCEPTION,
   RECONNECT,
   CONNECTING,
