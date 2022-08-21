@@ -7,13 +7,13 @@ export type QuitoOptions = {
   clientId?: string;
   username?: string;
   password?: string;
-  keepalive?: number;
+  keepaliveSec?: number;
   connectTimeoutMs?: number;
   will?: Will;
   tls?: boolean;
   caBase64?: String;
   certificateBase64?: String;
-  keyStoreKey?: string;
+  privateKeyBase64?: string;
   keyStorePassword?: string;
   cleanSession?: boolean;
   protocol?: Protocol;
@@ -78,7 +78,7 @@ export class QuitoOptionsBuilder {
   }
 
   public keepalive(keepalive: number): QuitoOptionsBuilder {
-    this._options.keepalive = keepalive;
+    this._options.keepaliveSec = keepalive;
     return this;
   }
 
@@ -119,7 +119,7 @@ export class QuitoOptionsBuilder {
     keyStorePassword: string
   ): QuitoOptionsBuilder {
     this._options.certificateBase64 = certificateDer.toString('base64');
-    this._options.keyStoreKey = keyRsaDer.toString('base64');
+    this._options.privateKeyBase64 = keyRsaDer.toString('base64');
     this._options.keyStorePassword = keyStorePassword;
     return this;
   }
@@ -135,7 +135,7 @@ export class QuitoOptionsBuilder {
   }
 
   public keyStoreKey(keyStoreKey: string): QuitoOptionsBuilder {
-    this._options.keyStoreKey = keyStoreKey;
+    this._options.privateKeyBase64 = keyStoreKey;
     return this;
   }
 
