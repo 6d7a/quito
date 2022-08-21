@@ -1,4 +1,4 @@
-# Quito
+# Quito ![Logo](./docs/assets/quito_round.svg)
 
 A TCP-capable MQTT client for React Native. The module provides a Typescript API for native MQTT clients on iOS and Android.
 
