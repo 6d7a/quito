@@ -22,18 +22,15 @@ The module provides promise- and callback-based methods to interact with the nat
 #### Callback-based usage
 
 ```typescript
-import { Quito } from 'quito';
+import { Quito, QuitoOptionsBuilder } from 'quito';
 
-const MqttClient = new Quito({
-  clientId: 'my-mqtt-client-over-tcp',
-  uri: 'mqtt://test.mosquitto.org:1883',
-  host: 'test.mosquitto.org', // optional, will be read from uri string if not provided, or default to "localhost"
-  port: 1883, // optional, will be read from uri string if not provided, or default to 1883
-  protocol: 'mqtt', // optional, will be read from uri string if not provided, or default to "tcp"
-  keepalive: 60, // optional, defaults to 60s
-  protocolLevel: 4, // optional, defaults to 4
-  clean: true, // optional, defaults to true
-});
+// build a config using the QuitoOptionsBuilder
+const config = new QuitoOptionsBuilder()
+  .uri('tcp://test.mosquitto.org:1883')
+  .clientId('quito-test-client')
+  .build();
+
+const MqttClient = new Quito(config);
 
 MqttClient.init() // call init() to create native client and set up native event listeners
   .then(() => {
@@ -110,18 +107,16 @@ MqttClient.init() // call init() to create native client and set up native event
 #### Promise-based usage
 
 ```typescript
-import { Quito } from 'quito';
+import { Quito, QuitoOptionsBuilder } from 'quito';
 
-const MqttClient = new Quito({
-  clientId: 'my-mqtt-client-over-tcp',
-  uri: 'mqtt://test.mosquitto.org:1883',
-  host: 'test.mosquitto.org', // optional, will be read from uri string if not provided, or default to "localhost"
-  port: 1883, // optional, will be read from uri string if not provided, or default to 1883
-  protocol: 'mqtt', // optional, will be read from uri string if not provided, or default to "tcp"
-  keepalive: 60, // optional, defaults to 60s
-  protocolLevel: 4, // optional, defaults to 4
-  clean: true, // optional, defaults to true
-});
+// build a config using the QuitoOptionsBuilder
+const config = new QuitoOptionsBuilder()
+  .uri('tcp://test.mosquitto.org:1883')
+  .clientId('quito-test-client')
+  .build();
+
+const MqttClient = new Quito(config);
+
 
 await MqttClient.init(); // call init() to create native client and set up native event listeners
 
@@ -190,4 +185,45 @@ try {
 } catch (e: any) {
   // handle error
 }
+```
+
+### Quito Options
+
+Use the QuitoOptionsBuilder to generate a config for the Quito MQTT client. The following options for configuring the Quito MQTT client are available:
+
+* `clientId`: *string* - Identifier used in the communication with the MQTT bromker
+* `username`: *string* - Username used to authenticate the client against the broker
+* `password`: *string* - Password used to authenticate the client against the broker
+* `keepaliveSec`: *number* - Maximum time interval in seconds between control packets
+* `connectTimeoutMs`: *number* - Maximum time interval the client will wait for the network connection to the MQTT broker to be established
+* `will`: *Will* - MQTT message that the broker will send, should the client connect ungracefully. 
+  * `topic`: *string* - Topic the will will be published to
+  * `payload`: *Buffer* - Message of the will
+  * `qos`: *QoS* - quality of service of the will
+  * `retain`: *boolean* - Indicates whether the will should be retained
+* `tls`: *boolean* - Whether the client will secure the connection to the broker using TLS. If `true`, at least the broker's CA certificate `caBase64` is required. If the broker expects the client to present a certificate as well, the shared `caBase64` plus `certificateBase64`, `keyStoreKey`, and `keyStorePassword` options become mandatory
+* `caBase64`: *String* - Base64-encoded CA certificate (DER) used by the MQTT broker
+* `certificateBase64`: *String* - Base64-encoded self-signed certificate (DER) of the client
+* `privateKeyBase64`: *string* - Base64-encoded RSA private key of the client
+* `keyStorePassword`: *string* - Password used in creating the client's keystore
+* `cleanSession`: *boolean* - When set to `true`, the broker will open a non-persistent connection, during which it will not store any subscription information or undelivered messages for the client
+* `protocol`: *Protocol* - Identifies the protocol used in the connection to the broker
+* `protocolVersion`: *number* - Identies the MQTT version used in the connection to the broker
+* `reconnectPeriod`: *number* - Time interval to elapse before a client will attempt to reconnect an unexpectedly disconnected client
+* `host`: *string* - Host name of the MQTT broker to connect to
+* `port`: *number* - Port number of the MQTT broker to connect to
+
+The QuitoOptionsBuilder provides a number of convenience methods for configurating:
+
+```typescript
+const config = new QuitoOptionsBuilder()
+  // uri(uri: string)
+  // parses uri and sets host, port, 
+  // protocol, and tls (if applicable)
+  .uri('ssl://test.mosquitto.org:8883')
+  .ca(/* takes a Buffer of the DER-encoded CA */)
+  // clientCertificate(certificateDer: Buffer, keyRsaDer: Buffer, keyStorePassword: string)
+  // sets all necessary options for self-signed client authentication
+  .clientCertificate(cert, key, pass)
+  .build();
 ```
