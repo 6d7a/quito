@@ -6,11 +6,4 @@ export type Will = {
   payload: Buffer;
   qos: QoS;
   retain: boolean;
-  willDelayIntervalSec?: number;
-  isPayloadUtf8Encoded?: boolean;
-  messageExpiryIntervalSec?: number;
-  contentType?: string;
-  responseTopic?: string;
-  correlationData?: Buffer;
-  userProperties?: { [key: string]: string };
 };
