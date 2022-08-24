@@ -198,7 +198,7 @@ Use the QuitoOptionsBuilder to generate a config for the Quito MQTT client. The 
 * `connectTimeoutMs`: *number* - Maximum time interval the client will wait for the network connection to the MQTT broker to be established
 * `will`: *Will* - MQTT message that the broker will send, should the client connect ungracefully. 
   * `topic`: *string* - Topic the will will be published to
-  * `payload`: *Buffer* - Message of the will
+  * `payload`: *string* - Message of the will Base64-encoded 
   * `qos`: *QoS* - quality of service of the will
   * `retain`: *boolean* - Indicates whether the will should be retained
 * `tls`: *boolean* - Whether the client will secure the connection to the broker using TLS. If `true`, at least the broker's CA certificate `caBase64` is required. If the broker expects the client to present a certificate as well, the shared `caBase64` plus `certificateBase64`, `keyStoreKey`, and `keyStorePassword` options become mandatory

@@ -1,6 +1,7 @@
 package com.quito.models
 
 import com.facebook.react.bridge.ReadableMap
+import android.util.Base64
 import com.quito.utils.getOr
 import com.quito.utils.hexToBytes
 
@@ -13,7 +14,7 @@ data class Will(
   @Suppress("UNCHECKED_CAST")
   constructor(willFromJs: ReadableMap): this(
     willFromJs.getOr<String>("topic", ""),
-    willFromJs.getOr<String>("payload", "00").hexToBytes(),
+    Base64.decode(willFromJs.getOr<String>("payload", ""), Base64.DEFAULT),
     QoS.values()[willFromJs.getOr<Int>("qos", 0)],
     willFromJs.getOr<Boolean>("retain", false),
   )
