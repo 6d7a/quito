@@ -11,5 +11,5 @@ struct Will {
     self.retain = willFromJs["retain"] ?? false
   }
 
-  func toCocoaMqttMessage() -> CocoaMQTTMessage = CocoaMQTTMessage(self.topic, self.payload, self.qos, self.retained)
+  func toCocoaMqttMessage() -> CocoaMQTTMessage = CocoaMQTTMessage(self.topic, self.payload, UInt8(self.qos), self.retained)
 }

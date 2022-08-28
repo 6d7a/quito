@@ -68,7 +68,7 @@ class QuitoModule(private val reactContext: ReactApplicationContext) :
   @ReactMethod
   fun publish(
     topic: String,
-    payloadAsUtf8String: String,
+    payloadBase64: String,
     options: ReadableMap,
     clientRef: String,
     promise: Promise? = null
@@ -76,7 +76,7 @@ class QuitoModule(private val reactContext: ReactApplicationContext) :
     withAssertedClient(clientRef) {
       it.publish(
         topic,
-        payloadAsUtf8String,
+        payloadBase64,
         PublishOptions(options),
         promise = promise
       )

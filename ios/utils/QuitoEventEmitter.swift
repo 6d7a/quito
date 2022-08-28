@@ -4,7 +4,7 @@ class QuitoEventEmitter {
   private let nativeEventEmitter: RCTEventEmitter
   private let clientRef: String
 
-  init(nativeEventEmitter: RCTEventEmitter, clientRef: String) {
+  init(withNativeEventEmitter: RCTEventEmitter, clientRef: String) {
     self.nativeEventEmitter = nativeEventEmitter
   }
 
@@ -17,7 +17,7 @@ class QuitoEventEmitter {
     self.nativeEventEmitter.sendEvent(withName: QuitoEvent.EXCEPTION, body: params)
   }
 
-  func sendEvent(event: QuitoEvent, params: [QuitoEventParam: Any]) {
+  func sendEvent(event: QuitoEvent, params: [QuitoEventParam: Any] = [:]) {
     params[QuitoEventParam.CLIENT_REF] = self.clientRef
     self.nativeEventEmitter.sendEvent(withName: event, body: params)
   }

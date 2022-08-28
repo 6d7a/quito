@@ -1,7 +1,7 @@
 struct MqttOptions {
   let clientId: String
   let host: String
-  let port: Int
+  let port: UInt16
   let protocol: Protocol
   let username: String?
   let password: String?
@@ -13,13 +13,13 @@ struct MqttOptions {
   let keepaliveSec: Int
   let protocolVersion: Int
   let cleanSession: Boolean
-  let connectionTimeoutMs: Int
+  let connectionTimeout: TimeInterval
   let will: Will?
 
   init(fromJsOptions optionsFromJs: NSDictionary) {
     self.clientId = optionsFromJs["clientId"] ?? "quito-android-\(UUID().uuidString)"
     self.host = optionsFromJs["host"] ?? "test.mosquitto.org"
-    self.port = optionsFromJs["port"] ?? 1883
+    self.port = UInt16(optionsFromJs["port"] ?? 1883)
     self.protocol = Protocol(rawValue: optionsFromJs["protocol"] ?? "TCP")
     self.username = optionsFromJs["username"] ?? null
     self.password = optionsFromJs["password"] ?? null
@@ -31,7 +31,7 @@ struct MqttOptions {
     self.keepaliveSec = optionsFromJs["keepaliveSec"] ?? 60
     self.protocolLevel = optionsFromJs["protocolLevel"] ?? 4
     self.clean = optionsFromJs["clean"] ?? true
-    self.connectionTimeoutMs = optionsFromJs["connectionTimeoutMs"] ?? 30000
+    self.connectionTimeout = TimeInterval((optionsFromJs["connectionTimeoutMs"] ?? 30000) / 1000)
     optionsFromJs.getMap("will")?.let { Will(it) }
   }
 }
