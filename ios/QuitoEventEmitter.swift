@@ -4,21 +4,22 @@ class QuitoEventEmitter {
   private let nativeEventEmitter: RCTEventEmitter
   private let clientRef: String
 
-  init(withNativeEventEmitter: RCTEventEmitter, clientRef: String) {
-    self.nativeEventEmitter = nativeEventEmitter
+  init(withNativeEventEmitter eventEmitter: RCTEventEmitter, clientRef: String) {
+    self.nativeEventEmitter = eventEmitter
+      self.clientRef = clientRef
   }
 
   func forwardException(e: Error) {
-    var params: [QuitoEventParam: Any] = [
-      QuitoEventParam.ERR_CODE: e.code
-      QuitoEventParam.ERR_MESSAGE: e.description
-      QuitoEventParam.STACKTRACE: e.domain
+    let params: [QuitoEventParam: Any] = [
+        QuitoEventParam.ERR_CODE: 0,
+      QuitoEventParam.ERR_MESSAGE: e.localizedDescription,
+      QuitoEventParam.STACKTRACE: ""
     ]
-    self.nativeEventEmitter.sendEvent(withName: QuitoEvent.EXCEPTION, body: params)
+      self.nativeEventEmitter.sendEvent(withName: QuitoEvent.EXCEPTION.rawValue, body: params)
   }
 
-  func sendEvent(event: QuitoEvent, params: [QuitoEventParam: Any] = [:]) {
-    params[QuitoEventParam.CLIENT_REF] = self.clientRef
-    self.nativeEventEmitter.sendEvent(withName: event, body: params)
+  func sendEvent(event: QuitoEvent, params: NSMutableDictionary = [:]) {
+      params.setValue(self.clientRef, forKey: QuitoEventParam.CLIENT_REF.rawValue)
+      self.nativeEventEmitter.sendEvent(withName: event.rawValue, body: params)
   }
 }

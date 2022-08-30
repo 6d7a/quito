@@ -1,4 +1,5 @@
 import Foundation
+import CocoaMQTT
 
 class QuitoClient {
   private let eventEmitter: QuitoEventEmitter
@@ -10,7 +11,7 @@ class QuitoClient {
     self.clientRef = clientRef
     self.eventEmitter = eventEmitter
     self.options = options
-    if options.protocol == Protocol.WS || options.protocol == Protocol.WSS {
+    if options["protocol"] == Protocol.WS || options["protocol"] == Protocol.WSS {
       let socket = CocoaMQTTWebSocket(uri: url.path)
       self.client = CocoaMQTT(options.clientId, options.host, options.port, socket)
     } else {
@@ -23,16 +24,28 @@ class QuitoClient {
     self.client.will = options.will.toCocoaMqttMessage()
     self.client.keepaAive = options.keepaliveSec  
     self.client.enableSsl = options.tls  
-    self.client.delegate = self
 
-    
-  }
+    self.client.didStateChangeTo = { (_, newState) -> {
+      if newState == CocoaMQTTConnState.disconnected {
+        eventEmitter.sendEvent(QuitoEvent.CONNECTION_LOST)
+      }
+    } }
+
+    sel.client.didReceiveMessage = { (_, msg, _) -> {
+      eventEmitter.sendEvent(QuitoEvent.MESSAGE_RECEIVED, [
+        QuitoEventParam.TOPIC: msg.topic,
+        QuitoEventParam.PAYLOAD: msg.payload
+      ])
+    } }
+  } 
 
   /**
    * Queries the connection status of the MQTT client.
    * @returns A boolean indicating whether or not the client is connected.
    */
-  func isConnected() : Bool = self.client.connState == CocoaMQTTConnState.connected
+  func isConnected() -> Bool {
+    return self.client.connState == CocoaMQTTConnState.connected
+  }
 
  /**
    * connects to the MQTT broker according to the
@@ -65,7 +78,7 @@ class QuitoClient {
    */
   func subscribe(topics: Array<MqttSubscription>, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
-      self.client.subscribe(t.map { ($0.topic, UInt8($0.qos)) }))
+      self.client.subscribe(t.map { ($0.topic, UInt8($0.qos)) })
       self.client.didSubscribeTopics = { (_, success, failed) -> {
         if failed.count != topics.count {
           sendEvent(QuitoEvent.SUBSCRIBED, [
@@ -76,7 +89,7 @@ class QuitoClient {
           reject(NSError(domain: "Quito", code: 0, userInfo: ["topics": failed]))
         }
         if failed.count > 0 {
-          forwardException(NSError(domain: "Quito", code: 0, , userInfo: ["topics": failed]) )
+          forwardException(NSError(domain: "Quito", code: 0, userInfo: ["topics": failed]) )
         }
         self.client.didSubscribeTopics = { _, _, _ in }
       } }
