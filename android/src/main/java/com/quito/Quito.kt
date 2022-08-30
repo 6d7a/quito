@@ -144,15 +144,15 @@ class Quito(
    * Publishes a message to a topic.
    *
    * @param topic The topic to publish to.
-   * @param payloadAsUtf8String The message to publish. Raw bytes must be encoded as UTF-8.
+   * @param payloadBase64 The message to publish.
    * @param options The [PublishOptions] to publish the message with
    * @param promise JS promise to asynchronously pass on the result of the publication attempt
    */
   fun publish(
-    topic: String, payloadAsUtf8String: String, options: PublishOptions, promise: Promise? = null
+    topic: String, payloadBase64: String, options: PublishOptions, promise: Promise? = null
   ) {
     try {
-      val encodedPayload = payloadAsUtf8String.toByteArray(Charsets.UTF_8)
+      val encodedPayload = payloadBase64.toByteArray(Charsets.UTF_8)
       val message = MqttMessage(encodedPayload)
         .apply {
           qos = options.qos.ordinal
@@ -162,7 +162,7 @@ class Quito(
         override fun onSuccess(asyncActionToken: IMqttToken?) {
           val params = Arguments.createMap()
           params.putString(TOPIC.name, topic)
-          params.putString(PAYLOAD.name, payloadAsUtf8String)
+          params.putString(PAYLOAD.name, payloadBase64)
           eventEmitter.sendEvent(MESSAGE_PUBLISHED, params)
           promise?.resolve(clientRef)
         }
@@ -173,7 +173,7 @@ class Quito(
           }
           promise?.reject(
             exception
-              ?: Error("Encountered unidentified error sending $payloadAsUtf8String on topic $topic")
+              ?: Error("Encountered unidentified error sending $payloadBase64 on topic $topic")
           )
         }
       })

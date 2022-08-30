@@ -22,7 +22,7 @@ RCT_EXTERN_METHOD(unsubscribe:(NSArray *)topics
                  rejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(publish:(NSString *)topic
-                 payloadAsUtf8String:(NSString *)payloadAsUtf8String
+                 payloadBase64:(NSString *)payloadBase64
                  options:(NSDictionary *)options
                  clientRef: (NSString *)clientRef
                  resolver:(RCTPromiseResolveBlock)resolve
