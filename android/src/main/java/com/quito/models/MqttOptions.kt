@@ -36,7 +36,7 @@ data class MqttOptions(
     optionsFromJs.getOr<Boolean>("tls", false),
     optionsFromJs.getOr<String?>("caBase64", null),
     optionsFromJs.getOr<String?>("keyStoreKey", null),
-    optionsFromJs.getOr<String?>("certificate", null),
+    optionsFromJs.getOr<String?>("certificateBase64", null),
     optionsFromJs.getOr<String?>("keyStorePassword", null),
     optionsFromJs.getOr<Int>("keepaliveSec", 60),
     optionsFromJs.getOr<Int>("protocolLevel", 4),

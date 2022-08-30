@@ -6,8 +6,10 @@ struct Will {
 
   init(fromJsWill willFromJs: NSDictionary) {
     self.topic = willFromJs["topic"] ?? "last/will/and/testament"
-    self.host = willFromJs["payload"] ?? "Mozart!"
-    self.port = QoS(rawValue: willFromJs["qos"] ?? 0)
+    self.payload = willFromJs["payload"] ?? "Mozart!"
+    self.qos = QoS(rawValue: willFromJs["qos"] ?? 0)
     self.retain = willFromJs["retain"] ?? false
   }
+
+  func toCocoaMqttMessage() -> CocoaMQTTMessage = CocoaMQTTMessage(self.topic, self.payload, self.qos, self.retained)
 }
