@@ -12,7 +12,7 @@ class QuitoClient {
     self.eventEmitter = eventEmitter
     self.options = options
       if options.connProtocol == Protocol.WS || options.connProtocol == Protocol.WSS {
-          let socket = CocoaMQTTWebSocket(uri: options.host)
+      let socket = CocoaMQTTWebSocket(uri: options.host)
           self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port, socket: socket)
     } else {
         self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port)
@@ -20,7 +20,7 @@ class QuitoClient {
 
     self.client.username = options.username
     self.client.password = options.password
-    self.client.cleanSession = options.clean
+    self.client.cleanSession = options.cleanSession
       self.client.willMessage = options.will.toCocoaMqttMessage()
     self.client.keepAlive = options.keepaliveSec
       self.client.enableSSL = options.tls
@@ -31,7 +31,7 @@ class QuitoClient {
       }
     } 
 
-    sel.client.didReceiveMessage = { (_, msg, _) in
+    self.client.didReceiveMessage = { (_, msg, _) in
       self.eventEmitter.sendEvent(event: QuitoEvent.MESSAGE_RECEIVED, params: [
         QuitoEventParam.TOPIC: msg.topic,
         QuitoEventParam.PAYLOAD: msg.payload
@@ -117,7 +117,7 @@ class QuitoClient {
           resolve(self.clientRef)
         } else {
           let failed = topics.filter { t in return !unsubscribed.contains(t) }
-          reject(NSError(domain: "Quito", code: 0, userInfo: ["topics": failed ]))
+          reject("", "Failed to unsubscribe from topics: \(failed.joined(separator: ", "))", nil)
         }
         self.client.didUnsubscribeTopics =  { _, _ in }
       }
