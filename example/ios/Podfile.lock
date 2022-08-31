@@ -1,10 +1,11 @@
 PODS:
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
-  - CocoaMQTT (2.0.5):
-    - CocoaMQTT/Core (= 2.0.5)
   - CocoaMQTT/Core (2.0.5):
     - CocoaAsyncSocket (~> 7.6.5)
+  - CocoaMQTT/WebSockets (2.0.5):
+    - CocoaMQTT/Core
+    - Starscream (~> 3.1.1)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.69.2)
   - FBReactNativeSpec (0.69.2):
@@ -17,7 +18,7 @@ PODS:
   - fmt (6.2.1)
   - glog (0.3.5)
   - quito (0.1.0):
-    - CocoaMQTT (~> 2.0.4)
+    - CocoaMQTT/WebSockets (= 2.0.5)
     - React-Core
     - Starscream (~> 3.1.1)
   - RCT-Folly (2021.06.28.00-v2):
@@ -418,7 +419,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 1381e8c4230895b6c2d20cea6b216ac7096a95f0
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
-  quito: 2eb9b6322a40ade75c962d90480b8e6e499f9139
+  quito: d4b3ee8edef54f194f77b10310b592d23e4c6280
   RCT-Folly: b9d9fe1fc70114b751c076104e52f3b1b5e5a95a
   RCTRequired: b723d4d6da2795df58189a01f92856b6912cf256
   RCTTypeSafety: 3973d2fcf39f43f7819e840d56ea6b2fe45996a0
