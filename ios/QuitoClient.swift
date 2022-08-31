@@ -12,7 +12,7 @@ class QuitoClient {
     self.eventEmitter = eventEmitter
     self.options = options
       if options.connProtocol == Protocol.WS || options.connProtocol == Protocol.WSS {
-      let socket = CocoaMQTTWebSocket(uri: url.path)
+          let socket = CocoaMQTTWebSocket(uri: options.host)
           self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port, socket: socket)
     } else {
         self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port)
@@ -25,7 +25,7 @@ class QuitoClient {
     self.client.keepAlive = options.keepaliveSec
       self.client.enableSSL = options.tls
 
-    self.client.didStateChangeTo = { (_, newState) in
+      self.client.didChangeState = { (_: CocoaMQTT, newState: CocoaMQTTConnState) in
       if newState == CocoaMQTTConnState.disconnected {
         self.eventEmitter.sendEvent(event: QuitoEvent.CONNECTION_LOST)
       }
