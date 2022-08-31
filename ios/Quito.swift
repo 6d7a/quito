@@ -12,27 +12,27 @@ class Quito: RCTEventEmitter {
         return QuitoEvent.allCases.map() { $0.rawValue }
     }
 
-    @objc(createClient:options:resolve:reject:)
+    @objc(createClient:resolve:reject:)
     func createClient(options: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
       do {
         let id = UUID().uuidString
         clients[id] = QuitoClient(withEmitter: 
-          QuitoEventEmitter(withNativeEventEmitter: this, id), 
-          MqttOptions(fromJsOptions: fromJsOptions),
-          id
+                                    QuitoEventEmitter(withNativeEventEmitter: self, clientRef: id),
+                                  options: MqttOptions(fromJsOptions: options),
+                                  clientRef: id
         )
         resolve(id)
-      } catch error {
-        reject(error)
+      } catch {
+          reject("", error.localizedDescription, nil)
       }
     }
 
-    @objc(connect:clientRef:resolve:reject:)
+    @objc(connect:resolve:reject:)
     func connect(clientRef: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
       do {
-        clients[clientRef]?.connect(resolve, reject)
-      } catch error {
-        reject(error)
+        clients[clientRef]?.connect(clientRef, resolve, reject)
+      } catch {
+          reject("", error.localizedDescription, nil)
       }
     }
 }

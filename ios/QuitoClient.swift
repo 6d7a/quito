@@ -11,19 +11,19 @@ class QuitoClient {
     self.clientRef = clientRef
     self.eventEmitter = eventEmitter
     self.options = options
-    if options["protocol"] == Protocol.WS || options["protocol"] == Protocol.WSS {
+      if options.connProtocol == Protocol.WS || options.connProtocol == Protocol.WSS {
       let socket = CocoaMQTTWebSocket(uri: url.path)
-      self.client = CocoaMQTT(options.clientId, options.host, options.port, socket)
+          self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port, socket: socket)
     } else {
-      self.client = CocoaMQTT(options.clientId, options.host, options.port)
+        self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port)
     }
 
     self.client.username = options.username
     self.client.password = options.password
     self.client.cleanSession = options.clean
-    self.client.will = options.will.toCocoaMqttMessage()
-    self.client.keepaAive = options.keepaliveSec  
-    self.client.enableSsl = options.tls  
+      self.client.willMessage = options.will.toCocoaMqttMessage()
+    self.client.keepAlive = options.keepaliveSec
+      self.client.enableSSL = options.tls
 
     self.client.didStateChangeTo = { (_, newState) -> {
       if newState == CocoaMQTTConnState.disconnected {
@@ -55,16 +55,16 @@ class QuitoClient {
    */
   func connect(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
-      self.client.connect(self.options.connectionTimeout)
+        self.client.connect(timeout: self.options.connectionTimeout)
       self.client.didConnectAck = { (_, ack) -> {
         eventEmitter.sendEvent(QuitoEvent.CONNECTED)
         resolve(self.clientRef)
         self.client.didConnectAck = { _, _ in }
       } }
       eventEmitter.sendEvent(QuitoEvent.CONNECTING)
-    } catch error {
-      eventEmitter.forwardException(error)
-      reject(error)
+    } catch {
+      eventEmitter.forwardException(e: error)
+      reject("", error.localizedDescription, nil)
     }
   }
 
@@ -78,7 +78,7 @@ class QuitoClient {
    */
   func subscribe(topics: Array<MqttSubscription>, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
-      self.client.subscribe(t.map { ($0.topic, UInt8($0.qos)) })
+        self.client.subscribe(topics.map { ($0.topic, $0.qos.cocoaQos) })
       self.client.didSubscribeTopics = { (_, success, failed) -> {
         if failed.count != topics.count {
           sendEvent(QuitoEvent.SUBSCRIBED, [
@@ -93,9 +93,9 @@ class QuitoClient {
         }
         self.client.didSubscribeTopics = { _, _, _ in }
       } }
-    } catch error {
-      eventEmitter.forwardException(error)
-      reject(error)
+    } catch {
+        eventEmitter.forwardException(e: error)
+      reject("", error.localizedDescription, nil)
     }
   }
 
@@ -121,9 +121,9 @@ class QuitoClient {
         }
         self.client.didUnsubscribeTopics =  { _, _ in }
       } }
-    } catch error {
-      eventEmitter.forwardException(error)
-      reject(error)
+    } catch {
+      eventEmitter.forwardException(e: error)
+      reject("", error.localizedDescription, nil)
     }
   }
 
@@ -137,21 +137,21 @@ class QuitoClient {
    */
   func publish(topic: String, payloadBase64: String, options: PublishOptions, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
-      let payload = [UInt8](Data(base64Encoded: payloadBase64))
-      let message = CocoaMQTTMessage(topic, payload, UInt8(options.qos), options.retained)
+      let payload = Data(base64Encoded: payloadBase64) as! Data
+        let message = CocoaMQTTMessage(topic: topic, payload: [UInt8](payload), qos: options.qos.cocoaQos, retained: options.retain)
       message.duplicated = options.isDuplicate
-      self.client.didPublishMessage = { (_, msg, _) -> {
-        sendEvent(QuitoEvent.UNSUBSCRIBED, [
+      self.client.didPublishMessage = { (_, msg, _) in
+          self.eventEmitter.sendEvent(event: QuitoEvent.UNSUBSCRIBED, params: [
             QuitoEventParam.TOPIC: topic,
             QuitoEventParam.PAYLOAD: payloadBase64
           ])
         resolve(self.clientRef)
         self.client.didPublishMessage = { _, _, _ in }
-      } }
+       }
       self.client.publish(message)
-    } catch error {
-      eventEmitter.forwardException(error)
-      reject(error)
+    } catch {
+      eventEmitter.forwardException(e: error)
+      reject("", error.localizedDescription, nil)
     }
   }
 
@@ -163,19 +163,19 @@ class QuitoClient {
    */
   func disconnect(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
-      self.client.didDisconnect = { (_, err: Error?) -> {
-        if err != nil {
-          eventEmitter.forwardException(err)
-          reject(err)
+      self.client.didDisconnect = { (_, err: Error?) in
+        if let error = err as! Error {
+            self.eventEmitter.forwardException(e: error)
+          reject("", error.localizedDescription, nil)
         } else {
-          eventEmitter.sendEvent(QuitoEvent.DISCONNECTED)
+            self.eventEmitter.sendEvent(event: QuitoEvent.DISCONNECTED)
           resolve(self.clientRef)
         }
         self.client.didDisconnect = { _, _ in }
-      } }
-    } catch error {
-      eventEmitter.forwardException(error)
-      reject(error)
+      }
+    } catch {
+      eventEmitter.forwardException(e: error)
+      reject("", error.localizedDescription, nil)
     }
   }
 }
