@@ -25,18 +25,18 @@ class QuitoClient {
     self.client.keepAlive = options.keepaliveSec
       self.client.enableSSL = options.tls
 
-    self.client.didStateChangeTo = { (_, newState) -> {
+    self.client.didStateChangeTo = { (_, newState) in
       if newState == CocoaMQTTConnState.disconnected {
-        eventEmitter.sendEvent(QuitoEvent.CONNECTION_LOST)
+        self.eventEmitter.sendEvent(event: QuitoEvent.CONNECTION_LOST)
       }
-    } }
+    } 
 
-    sel.client.didReceiveMessage = { (_, msg, _) -> {
-      eventEmitter.sendEvent(QuitoEvent.MESSAGE_RECEIVED, [
+    sel.client.didReceiveMessage = { (_, msg, _) in
+      self.eventEmitter.sendEvent(event: QuitoEvent.MESSAGE_RECEIVED, params: [
         QuitoEventParam.TOPIC: msg.topic,
         QuitoEventParam.PAYLOAD: msg.payload
       ])
-    } }
+    } 
   } 
 
   /**
@@ -56,12 +56,12 @@ class QuitoClient {
   func connect(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
         self.client.connect(timeout: self.options.connectionTimeout)
-      self.client.didConnectAck = { (_, ack) -> {
-        eventEmitter.sendEvent(QuitoEvent.CONNECTED)
+      self.client.didConnectAck = { (_, ack) in
+        self.eventEmitter.sendEvent(event: QuitoEvent.CONNECTED)
         resolve(self.clientRef)
         self.client.didConnectAck = { _, _ in }
-      } }
-      eventEmitter.sendEvent(QuitoEvent.CONNECTING)
+      }
+      eventEmitter.sendEvent(event: QuitoEvent.CONNECTING)
     } catch {
       eventEmitter.forwardException(e: error)
       reject("", error.localizedDescription, nil)
@@ -79,22 +79,22 @@ class QuitoClient {
   func subscribe(topics: Array<MqttSubscription>, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
         self.client.subscribe(topics.map { ($0.topic, $0.qos.cocoaQos) })
-      self.client.didSubscribeTopics = { (_, success, failed) -> {
+      self.client.didSubscribeTopics = { (_, success, failed) in
         if failed.count != topics.count {
-          sendEvent(QuitoEvent.SUBSCRIBED, [
+          self.eventEmitter.sendEvent(event: QuitoEvent.SUBSCRIBED, params: [
             QuitoEventParam.TOPIC: success.allKeys
           ])
           resolve(self.clientRef)
         } else {
-          reject(NSError(domain: "Quito", code: 0, userInfo: ["topics": failed]))
+          reject("", "Failed to subscribe to topics: \(failed.joined(separator: ", "))", nil)
         }
         if failed.count > 0 {
-          forwardException(NSError(domain: "Quito", code: 0, userInfo: ["topics": failed]) )
+           self.eventEmitter.forwardException(e: NSError(domain: "Quito", code: 0, userInfo: ["topics": failed]) )
         }
         self.client.didSubscribeTopics = { _, _, _ in }
-      } }
+      } 
     } catch {
-        eventEmitter.forwardException(e: error)
+      eventEmitter.forwardException(e: error)
       reject("", error.localizedDescription, nil)
     }
   }
@@ -109,8 +109,8 @@ class QuitoClient {
   func unsubscribe(topics: Array<String>, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
       self.client.unsubscribe(topics)
-      self.client.didUnsubscribeTopics = { (_, unsubscribed) -> {
-        sendEvent(QuitoEvent.UNSUBSCRIBED, [
+      self.client.didUnsubscribeTopics = { (_, unsubscribed) in
+        self.eventEmitter.sendEvent(event: QuitoEvent.UNSUBSCRIBED, params: [
             QuitoEventParam.TOPIC: unsubscribed
           ])
         if unsubscribed.count == topics.count {
@@ -120,7 +120,7 @@ class QuitoClient {
           reject(NSError(domain: "Quito", code: 0, userInfo: ["topics": failed ]))
         }
         self.client.didUnsubscribeTopics =  { _, _ in }
-      } }
+      }
     } catch {
       eventEmitter.forwardException(e: error)
       reject("", error.localizedDescription, nil)
