@@ -1,0 +1,6 @@
+[submodule "ios/thirdparty/CocoaAsyncSocket"]
+	path = ios/thirdparty/CocoaAsyncSocket
+	url = https://github.com/robbiehanson/CocoaAsyncSocket.git
+[submodule "ios/thirdparty/CocoaMQTT"]
+	path = ios/thirdparty/CocoaMQTT
+	url = https://github.com/emqx/CocoaMQTT.git

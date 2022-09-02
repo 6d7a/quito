@@ -10,12 +10,11 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "12.0" }
+  s.platforms    = { :ios => "12.4" }
   s.source       = { :git => "http://github.com/6d7a/quito.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
   s.dependency "Starscream", "~> 3.1.1"
-  s.dependency "CocoaMQTT/WebSockets", "2.0.5"
 end

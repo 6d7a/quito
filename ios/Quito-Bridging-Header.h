@@ -2,6 +2,6 @@
 #import <React/RCTViewManager.h>
 #import <React/RCTEventEmitter.h>
 
-#import <CocoaMQTT/CocoaMQTT.h>
-#import <CocoaAsyncSocket/GCDAsyncSocket.h>
-#import <CocoaAsyncSocket/GCDAsyncUdpSocket.h>
+#import "thirdparty/CocoaMQTT/Source/CocoaMQTT.h"
+#import "thirdparty/CocoaAsyncSocket/Source/GCD/GCDAsyncSocket.h"
+#import "thirdparty/CocoaAsyncSocket/Source/GCD/GCDAsyncUdpSocket.h"
