@@ -30,7 +30,7 @@ class Quito: RCTEventEmitter {
     @objc(connect:resolve:reject:)
     func connect(clientRef: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
       do {
-        clients[clientRef]?.connect(clientRef, resolve, reject)
+          clients[clientRef]?.connect(resolve: resolve, reject: reject)
       } catch {
           reject("", error.localizedDescription, nil)
       }

@@ -1,3 +1,5 @@
+import CocoaMQTT
+
 struct Will {
   let topic: String
   let payload: String
@@ -5,13 +7,14 @@ struct Will {
   let retain: Bool
 
   init(fromJsWill willFromJs: NSDictionary) {
-    self.topic = willFromJs["topic"] ?? "last/will/and/testament"
-    self.payload = willFromJs["payload"] ?? "Mozart!"
-    self.qos = QoS(rawValue: willFromJs["qos"] ?? 0)
-    self.retain = willFromJs["retain"] ?? false
+      self.topic = Helpers.getOrDefault(dict: willFromJs, key: "topic", defaultValue: "last/will/and/testament")
+      self.payload = Helpers.getOrDefault(dict: willFromJs, key: "payload", defaultValue: "Mozart!")
+      self.qos = QoS(rawValue: Helpers.getOrDefault(dict: willFromJs, key: "qos", defaultValue: 0))!
+      self.retain = Helpers.getOrDefault(dict: willFromJs, key: "retain", defaultValue: false)
   }
 
   func toCocoaMqttMessage() -> CocoaMQTTMessage {
-    return CocoaMQTTMessage(self.topic, self.payload, UInt8(self.qos), self.retained)
+      let payload = Data(base64Encoded: self.payload) as! Data
+      return CocoaMQTTMessage(topic: self.topic, payload: [UInt8](payload), qos: self.qos.cocoaQos(), retained: self.retain)
   }
 }

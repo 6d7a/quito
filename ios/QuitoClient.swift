@@ -21,7 +21,7 @@ class QuitoClient {
     self.client.username = options.username
     self.client.password = options.password
     self.client.cleanSession = options.cleanSession
-      self.client.willMessage = options.will.toCocoaMqttMessage()
+      self.client.willMessage = options.will?.toCocoaMqttMessage()
     self.client.keepAlive = options.keepaliveSec
       self.client.enableSSL = options.tls
 
@@ -78,7 +78,7 @@ class QuitoClient {
    */
   func subscribe(topics: Array<MqttSubscription>, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
-        self.client.subscribe(topics.map { ($0.topic, $0.qos.cocoaQos) })
+        self.client.subscribe(topics.map { ($0.topic, $0.qos.cocoaQos()) })
       self.client.didSubscribeTopics = { (_, success, failed) in
         if failed.count != topics.count {
           self.eventEmitter.sendEvent(event: QuitoEvent.SUBSCRIBED, params: [
@@ -138,7 +138,7 @@ class QuitoClient {
   func publish(topic: String, payloadBase64: String, options: PublishOptions, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
       let payload = Data(base64Encoded: payloadBase64) as! Data
-        let message = CocoaMQTTMessage(topic: topic, payload: [UInt8](payload), qos: options.qos.cocoaQos, retained: options.retain)
+        let message = CocoaMQTTMessage(topic: topic, payload: [UInt8](payload), qos: options.qos.cocoaQos(), retained: options.retain)
       message.duplicated = options.isDuplicate
       self.client.didPublishMessage = { (_, msg, _) in
           self.eventEmitter.sendEvent(event: QuitoEvent.UNSUBSCRIBED, params: [
@@ -164,7 +164,7 @@ class QuitoClient {
   func disconnect(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
       self.client.didDisconnect = { (_, err: Error?) in
-        if let error = err as! Error {
+        if let error = err as! Error? {
             self.eventEmitter.forwardException(e: error)
           reject("", error.localizedDescription, nil)
         } else {

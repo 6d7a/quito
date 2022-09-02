@@ -19,7 +19,7 @@ struct MqttOptions {
       self.clientId = Helpers.getOrDefault(dict: optionsFromJs, key: "clientId", defaultValue: "quito-android-\(UUID().uuidString)")
       self.host = Helpers.getOrDefault(dict: optionsFromJs, key: "host", defaultValue: "test.mosquitto.org")
       self.port = Helpers.getOrDefault(dict: optionsFromJs, key: "port", defaultValue: 1883)
-      self.connProtocol = Protocol(rawValue: Helpers.getOrDefault(dict: optionsFromJs, key: "protocol", defaultValue: "TCP"))      
+      self.connProtocol = Protocol(rawValue: Helpers.getOrDefault(dict: optionsFromJs, key: "protocol", defaultValue: "TCP"))!
     self.username = optionsFromJs["username"] as? String
     self.password = optionsFromJs["password"] as? String
     self.tls = Helpers.getOrDefault(dict: optionsFromJs, key: "tls", defaultValue: false)
@@ -32,6 +32,8 @@ struct MqttOptions {
     self.connectionTimeout = TimeInterval((Helpers.getOrDefault(dict: optionsFromJs, key: "connectionTimeoutMs", defaultValue: 30000)) / 1000)
     if let willmsg = optionsFromJs["username"] as! NSDictionary? {
         self.will = Will(fromJsWill: willmsg)
+    } else {
+        self.will = nil
     }
   }
 }
