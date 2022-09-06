@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-#import CocoaAsyncSocket/GCDAsyncUdpSocket.h°  s.platforms    = { :ios => "13.0" }
+  s.platforms    = { :ios => "13.0" }
   s.source       = { :git => "http://github.com/6d7a/quito.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
   s.framework = "Foundation"
 
   s.dependency "React-Core"
+  s.dependency "CocoaAsyncSocket"
   s.dependency "Starscream", "~> 3.1.1"
   s.dependency "CocoaMQTT/WebSockets", "2.0.5"
 end
