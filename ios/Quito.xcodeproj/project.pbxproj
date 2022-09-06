@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-		5E555C0D2413F4C50049A1A2 /* Quito.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* Quito.m */; };
-		F4FF95D7245B92E800C19C63 /*  Quito.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  Quito.swift */; };
-
+		E93CF7EF28C236D3004BC4FA /* MqttOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7DD28C236D2004BC4FA /* MqttOptions.swift */; };
+		E93CF7F028C236D3004BC4FA /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E128C236D2004BC4FA /* Protocol.swift */; };
+		E93CF7F128C236D3004BC4FA /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E228C236D2004BC4FA /* Helpers.swift */; };
+		E93CF7F228C236D3004BC4FA /* QuitoEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E328C236D2004BC4FA /* QuitoEvent.swift */; };
+		E93CF7F328C236D3004BC4FA /* QoS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E428C236D2004BC4FA /* QoS.swift */; };
+		E93CF7F428C236D3004BC4FA /* Will.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E528C236D2004BC4FA /* Will.swift */; };
+		E93CF7F528C236D3004BC4FA /* QuitoEventParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E628C236D2004BC4FA /* QuitoEventParam.swift */; };
+		E93CF7F628C236D3004BC4FA /* PublishOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E728C236D2004BC4FA /* PublishOptions.swift */; };
+		E93CF7F728C236D3004BC4FA /* Quito.m in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E828C236D2004BC4FA /* Quito.m */; };
+		E93CF7F828C236D3004BC4FA /* Quito.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7E928C236D2004BC4FA /* Quito.swift */; };
+		E93CF7F928C236D3004BC4FA /* QuitoEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7EC28C236D2004BC4FA /* QuitoEventEmitter.swift */; };
+		E93CF7FA28C236D3004BC4FA /* QuitoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7ED28C236D3004BC4FA /* QuitoClient.swift */; };
+		E93CF7FB28C236D3004BC4FA /* MqttSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93CF7EE28C236D3004BC4FA /* MqttSubscription.swift */; };
+		F4FF95D7245B92E800C19C63 /* Quito.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* Quito.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,11 +37,25 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libQuito.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libQuito.a; sourceTree = BUILT_PRODUCTS_DIR; };
-
 		B3E7B5891CC2AC0600A0062D /* Quito.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quito.m; sourceTree = "<group>"; };
+		E93CF7DD28C236D2004BC4FA /* MqttOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttOptions.swift; sourceTree = "<group>"; };
+		E93CF7E128C236D2004BC4FA /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		E93CF7E228C236D2004BC4FA /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		E93CF7E328C236D2004BC4FA /* QuitoEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuitoEvent.swift; sourceTree = "<group>"; };
+		E93CF7E428C236D2004BC4FA /* QoS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QoS.swift; sourceTree = "<group>"; };
+		E93CF7E528C236D2004BC4FA /* Will.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Will.swift; sourceTree = "<group>"; };
+		E93CF7E628C236D2004BC4FA /* QuitoEventParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuitoEventParam.swift; sourceTree = "<group>"; };
+		E93CF7E728C236D2004BC4FA /* PublishOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishOptions.swift; sourceTree = "<group>"; };
+		E93CF7E828C236D2004BC4FA /* Quito.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quito.m; sourceTree = "<group>"; };
+		E93CF7E928C236D2004BC4FA /* Quito.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quito.swift; sourceTree = "<group>"; };
+		E93CF7EA28C236D2004BC4FA /* Quito-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Quito-Bridging-Header.h"; sourceTree = "<group>"; };
+		E93CF7EB28C236D2004BC4FA /* thirdparty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = thirdparty; sourceTree = "<group>"; };
+		E93CF7EC28C236D2004BC4FA /* QuitoEventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuitoEventEmitter.swift; sourceTree = "<group>"; };
+		E93CF7ED28C236D3004BC4FA /* QuitoClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuitoClient.swift; sourceTree = "<group>"; };
+		E93CF7EE28C236D3004BC4FA /* MqttSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttSubscription.swift; sourceTree = "<group>"; };
+		E93CF7FC28C237BE004BC4FA /* quito.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quito.podspec; path = ../quito.podspec; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* Quito-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Quito-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* Quito.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quito.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,11 +80,25 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-
 				F4FF95D6245B92E800C19C63 /* Quito.swift */,
+				E93CF7EA28C236D2004BC4FA /* Quito-Bridging-Header.h */,
+				E93CF7FC28C237BE004BC4FA /* quito.podspec */,
 				B3E7B5891CC2AC0600A0062D /* Quito.m */,
 				F4FF95D5245B92E700C19C63 /* Quito-Bridging-Header.h */,
-
+				E93CF7E228C236D2004BC4FA /* Helpers.swift */,
+				E93CF7DD28C236D2004BC4FA /* MqttOptions.swift */,
+				E93CF7EE28C236D3004BC4FA /* MqttSubscription.swift */,
+				E93CF7E128C236D2004BC4FA /* Protocol.swift */,
+				E93CF7E728C236D2004BC4FA /* PublishOptions.swift */,
+				E93CF7E428C236D2004BC4FA /* QoS.swift */,
+				E93CF7E828C236D2004BC4FA /* Quito.m */,
+				E93CF7E928C236D2004BC4FA /* Quito.swift */,
+				E93CF7ED28C236D3004BC4FA /* QuitoClient.swift */,
+				E93CF7E328C236D2004BC4FA /* QuitoEvent.swift */,
+				E93CF7EC28C236D2004BC4FA /* QuitoEventEmitter.swift */,
+				E93CF7E628C236D2004BC4FA /* QuitoEventParam.swift */,
+				E93CF7EB28C236D2004BC4FA /* thirdparty */,
+				E93CF7E528C236D2004BC4FA /* Will.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,10 +160,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
+				E93CF7EF28C236D3004BC4FA /* MqttOptions.swift in Sources */,
+				E93CF7F428C236D3004BC4FA /* Will.swift in Sources */,
+				E93CF7F328C236D3004BC4FA /* QoS.swift in Sources */,
 				F4FF95D7245B92E800C19C63 /* Quito.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* Quito.m in Sources */,
-
+				E93CF7F728C236D3004BC4FA /* Quito.m in Sources */,
+				E93CF7F028C236D3004BC4FA /* Protocol.swift in Sources */,
+				E93CF7FB28C236D3004BC4FA /* MqttSubscription.swift in Sources */,
+				E93CF7F628C236D3004BC4FA /* PublishOptions.swift in Sources */,
+				E93CF7F528C236D3004BC4FA /* QuitoEventParam.swift in Sources */,
+				E93CF7FA28C236D3004BC4FA /* QuitoClient.swift in Sources */,
+				E93CF7F928C236D3004BC4FA /* QuitoEventEmitter.swift in Sources */,
+				E93CF7F128C236D3004BC4FA /* Helpers.swift in Sources */,
+				E93CF7F828C236D3004BC4FA /* Quito.swift in Sources */,
+				E93CF7F228C236D3004BC4FA /* QuitoEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -218,7 +266,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -238,11 +286,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Quito;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "Quito-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Debug;
 		};
@@ -259,10 +305,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Quito;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "Quito-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Release;
 		};
