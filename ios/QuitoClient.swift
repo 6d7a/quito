@@ -78,7 +78,7 @@ class QuitoClient {
    */
   func subscribe(topics: Array<MqttSubscription>, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     do {
-        self.client.subscribe(topics.map { ($0.topic, $0.qos.cocoaQos()) })
+      self.client.subscribe(topics.map { ($0.topic, $0.qos.cocoaQos()) })
       self.client.didSubscribeTopics = { (_, success, failed) in
         if failed.count != topics.count {
           self.eventEmitter.sendEvent(event: QuitoEvent.SUBSCRIBED, params: [
