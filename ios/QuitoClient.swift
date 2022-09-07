@@ -178,4 +178,14 @@ class QuitoClient {
       reject("", error.localizedDescription, nil)
     }
   }
+
+  func isConnected(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    do {
+      let isConnected = self.client.connState == CocoaMQTTConnState.connected
+      resolve(isConnected)
+    } catch {
+      eventEmitter.forwardException(e: error)
+      reject("", error.localizedDescription, nil)
+    }
+  }
 }

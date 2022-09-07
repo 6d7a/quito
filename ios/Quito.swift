@@ -59,4 +59,29 @@ class Quito: RCTEventEmitter {
           reject("", error.localizedDescription, nil)
       }
     }
+
+    @objc func disconnect(_ clientRef: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+      do {
+          clients[clientRef]?.disconnect(resolve: resolve, reject: reject)
+      } catch {
+          reject("", error.localizedDescription, nil)
+      }
+    }
+
+    @objc func close(_ clientRef: String, force force: Bool, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+      do {
+          clients[clientRef]?.disconnect(resolve: resolve, reject: reject)
+          clients[clientRef] = nil
+      } catch {
+          reject("", error.localizedDescription, nil)
+      }
+    }
+
+    @objc func end(_ clientRef: String, force force: Bool, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+      close(clientRef: clientRef, force: force, resolver: resolve, rejecter: reject)
+    }
+
+    @objc func isConnected(_ clientRef: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+      clients[clientRef]?.isConnected(resolve: resolve, reject: reject)
+    }
 }
