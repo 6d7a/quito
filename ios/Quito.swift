@@ -36,7 +36,7 @@ class Quito: RCTEventEmitter {
 
     @objc func subscribe(_ topics: NSArray, clientRef clientRef: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
       do {
-          let topicArray = (topics as Array<AnyObject> as Array<NSDictionary>).map { MqttSubscription(fromJsSubscription: $0) }
+          let topicArray = (NSMutableArray(array:topics) as! [NSDictionary]).map { MqttSubscription(fromJsSubscription: $0) }
           clients[clientRef]?.subscribe(topics: topicArray, resolve: resolve, reject: reject)
       } catch {
           reject("", error.localizedDescription, nil)
@@ -45,7 +45,7 @@ class Quito: RCTEventEmitter {
 
     @objc func unsubscribe(_ topics: NSArray, clientRef clientRef: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
       do {
-          let topicArray = (topics as Array<AnyObject> as Array<String>)
+          let topicArray = NSMutableArray(array: topics) as! [String]
           clients[clientRef]?.unsubscribe(topics: topicArray, resolve: resolve, reject: reject)
       } catch {
           reject("", error.localizedDescription, nil)
@@ -78,7 +78,7 @@ class Quito: RCTEventEmitter {
     }
 
     @objc func end(_ clientRef: String, force force: Bool, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
-      close(clientRef: clientRef, force: force, resolver: resolve, rejecter: reject)
+      close(clientRef, force: force, resolver: resolve, rejecter: reject)
     }
 
     @objc func isConnected(_ clientRef: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Buffer } from 'buffer';
 
-import { View, Text, TextInput, Button } from 'react-native';
+import { SafeAreaView, Text, TextInput, Button } from 'react-native';
 import { Quito, QuitoEvent, QuitoOptionsBuilder } from 'quito';
 
 export default function App() {
@@ -53,7 +53,7 @@ export default function App() {
   }, []);
 
   return (
-    <View>
+    <SafeAreaView style={{padding: 20}}>
       <Text>Example App: Incoming messages will be printed below</Text>
       <Text>Message: {message}</Text>
       <Text>Logs: {log}</Text>
@@ -70,6 +70,6 @@ export default function App() {
           mqttClient?.publishAsync('quito/test', toPublish);
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
