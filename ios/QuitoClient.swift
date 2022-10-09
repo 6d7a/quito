@@ -34,7 +34,7 @@ class QuitoClient {
     self.client.didReceiveMessage = { (_, msg, _) in
       self.eventEmitter.sendEvent(event: QuitoEvent.MESSAGE_RECEIVED, params: [
         QuitoEventParam.TOPIC.rawValue: msg.topic,
-        QuitoEventParam.PAYLOAD.rawValue: msg.payload
+        QuitoEventParam.PAYLOAD.rawValue: msg.payload.toBase64()!
       ])
     } 
   } 

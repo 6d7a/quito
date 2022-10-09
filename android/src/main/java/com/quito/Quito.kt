@@ -1,5 +1,6 @@
 package com.quito
 
+import android.util.Base64
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactContext
@@ -247,7 +248,8 @@ class Quito(
     if (message != null) {
       params.putString(
         PAYLOAD.name,
-        message.payload.joinToString(separator = "") { b -> "%02x".format(b) })
+        Base64.encodeToString(message.payload, Base64.DEFAULT)
+      )
       params.putInt(QOS.name, message.qos)
       params.putBoolean(RETAIN.name, message.isRetained)
     }
