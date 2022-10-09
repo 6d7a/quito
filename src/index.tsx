@@ -1,13 +1,14 @@
 import { NativeModules, Platform, NativeEventEmitter } from 'react-native';
-import type { QuitoOptions } from './models/MqttOptions';
-import type { MqttSubscription } from './models/MqttSubscription';
+import type { QuitoOptions } from './models/QuitoOptions';
+import type { QuitoSubscription } from './models/QuitoSubscription';
 import type { PublishOptions } from './models/PublishOptions';
 import { QuitoEvent } from './models/events/QuitoEvent';
 import { QuitoEventParam } from './models/events/QuitoEventParam';
+import { toByteArray, fromByteArray } from 'base64-js'
 
 export * from './models/events/QuitoEvent';
 export * from './models/Protocol';
-export * from './models/MqttOptions';
+export * from './models/QuitoOptions';
 
 const LINKING_ERROR =
   `The package 'quito' doesn't seem to be linked. Make sure: \n\n` +
@@ -56,11 +57,11 @@ export class Quito {
   public on(event: QuitoEvent.UNSUBSCRIBED, cb: (topic: string) => void): this;
   public on(
     event: QuitoEvent.MESSAGE_RECEIVED,
-    cb: (topic: string, payloadAsUtf8: string) => void
+    cb: (topic: string, payload: Uint8Array) => void
   ): this;
   public on(
     event: QuitoEvent.MESSAGE_PUBLISHED,
-    cb: (topic: string, payloadAsUtf8: string) => void
+    cb: (topic: string, payload: Uint8Array) => void
   ): this;
   public on(event: QuitoEvent.DISCONNECTED, cb: () => void): this;
   public on(
@@ -89,11 +90,11 @@ export class Quito {
     await QuitoNative.disconnect(this._clientRef);
   }
 
-  subscribe(...topics: MqttSubscription[]): void {
+  subscribe(...topics: QuitoSubscription[]): void {
     QuitoNative.subscribe([...topics], this._clientRef);
   }
 
-  async subscribeAsync(...topics: MqttSubscription[]): Promise<void> {
+  async subscribeAsync(...topics: QuitoSubscription[]): Promise<void> {
     await QuitoNative.subscribe([...topics], this._clientRef);
   }
 
@@ -109,18 +110,18 @@ export class Quito {
 
   publish(
     topic: string,
-    payloadUtf8: string,
+    payload: Uint8Array,
     options: PublishOptions = {}
   ): void {
-    QuitoNative.publish(topic, payloadUtf8, options, this._clientRef);
+    QuitoNative.publish(topic, fromByteArray(payload), options, this._clientRef);
   }
 
   async publishAsync(
     topic: string,
-    payloadUtf8: string,
+    payload: Uint8Array,
     options: PublishOptions = {}
   ): Promise<void> {
-    QuitoNative.publish(topic, payloadUtf8, options, this._clientRef);
+    QuitoNative.publish(topic, fromByteArray(payload), options, this._clientRef);
   }
 
   reconnect(): void {
@@ -194,6 +195,10 @@ export class Quito {
   ): void {
     this._eventEmitter.addListener(eventType, (event) => {
       if (event[QuitoEventParam.CLIENT_REF] !== this._clientRef) return;
+
+      if (eventType === QuitoEvent.MESSAGE_PUBLISHED || eventType === QuitoEvent.MESSAGE_RECEIVED) {
+        event[QuitoEventParam.PAYLOAD] = toByteArray(event[QuitoEventParam.PAYLOAD])
+      }
 
       this._eventHandler[eventType]?.call(
         this,
