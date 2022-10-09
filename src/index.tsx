@@ -39,7 +39,6 @@ export class Quito {
 
   constructor(options: QuitoOptions) {
     this._options = options;
-    console.log(JSON.stringify(this._options));
   }
 
   async init(): Promise<void> {
@@ -194,7 +193,6 @@ export class Quito {
     ...eventParams: QuitoEventParam[]
   ): void {
     this._eventEmitter.addListener(eventType, (event) => {
-      console.log(eventType, JSON.stringify(event));
       if (event[QuitoEventParam.CLIENT_REF] !== this._clientRef) return;
 
       this._eventHandler[eventType]?.call(
