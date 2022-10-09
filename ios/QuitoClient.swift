@@ -33,8 +33,8 @@ class QuitoClient {
 
     self.client.didReceiveMessage = { (_, msg, _) in
       self.eventEmitter.sendEvent(event: QuitoEvent.MESSAGE_RECEIVED, params: [
-        QuitoEventParam.TOPIC: msg.topic,
-        QuitoEventParam.PAYLOAD: msg.payload
+        QuitoEventParam.TOPIC.rawValue: msg.topic,
+        QuitoEventParam.PAYLOAD.rawValue: msg.payload
       ])
     } 
   } 
@@ -82,7 +82,7 @@ class QuitoClient {
       self.client.didSubscribeTopics = { (_, success, failed) in
         if failed.count != topics.count {
           self.eventEmitter.sendEvent(event: QuitoEvent.SUBSCRIBED, params: [
-            QuitoEventParam.TOPIC: success.allKeys
+            QuitoEventParam.TOPIC.rawValue: success.allKeys
           ])
           resolve(self.clientRef)
         } else {
@@ -111,7 +111,7 @@ class QuitoClient {
       self.client.unsubscribe(topics)
       self.client.didUnsubscribeTopics = { (_, unsubscribed) in
         self.eventEmitter.sendEvent(event: QuitoEvent.UNSUBSCRIBED, params: [
-            QuitoEventParam.TOPIC: unsubscribed
+            QuitoEventParam.TOPIC.rawValue: unsubscribed
           ])
         if unsubscribed.count == topics.count {
           resolve(self.clientRef)
@@ -142,8 +142,8 @@ class QuitoClient {
       message.duplicated = options.isDuplicate
       self.client.didPublishMessage = { (_, msg, _) in
           self.eventEmitter.sendEvent(event: QuitoEvent.UNSUBSCRIBED, params: [
-            QuitoEventParam.TOPIC: topic,
-            QuitoEventParam.PAYLOAD: payloadBase64
+            QuitoEventParam.TOPIC.rawValue: topic,
+            QuitoEventParam.PAYLOAD.rawValue: payloadBase64
           ])
         resolve(self.clientRef)
         self.client.didPublishMessage = { _, _, _ in }
