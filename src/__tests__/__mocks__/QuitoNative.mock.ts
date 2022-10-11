@@ -12,12 +12,12 @@ type PublishedMsg = {
 class QuitoNativeMock implements NativeQuito {
     options: QuitoOptions | undefined
     connectionState = false
-    private _subscriptions: QuitoSubscription[] = []
-    private _publishedMessages: PublishedMsg[] = []
+    subscriptions: QuitoSubscription[] = []
+    publishedMessages: PublishedMsg[] = []
 
     resetMock() {
-        this._publishedMessages = []
-        this._subscriptions = []
+        this.publishedMessages = []
+        this.subscriptions = []
         this.options = undefined
         this.connectionState = false
     }
@@ -42,13 +42,13 @@ class QuitoNativeMock implements NativeQuito {
         return this.connectionState
     }
     async subscribe(topics: QuitoSubscription[], _: string) {
-        this._subscriptions.push(...topics)
+        this.subscriptions.push(...topics)
     }
     async unsubscribe(topics: string[], _: string) {
-        this._subscriptions = this._subscriptions.filter(s => !topics.includes(s.topic))
+        this.subscriptions = this.subscriptions.filter(s => !topics.includes(s.topic))
     }
     async publish(topic: string, payload: string, options: PublishOptions, _: string) {
-        this._publishedMessages.push({ topic, payloadBase64: payload, publishOptions: options })
+        this.publishedMessages.push({ topic, payloadBase64: payload, publishOptions: options })
     }
     async end(_1: string, _2: boolean) {
         this.connectionState = false
