@@ -144,6 +144,7 @@ export class Quito {
     this._eventEmitter.removeAllListeners(QuitoEvent.CONNECTED);
     this._eventEmitter.removeAllListeners(QuitoEvent.CONNECTING);
     this._eventEmitter.removeAllListeners(QuitoEvent.CONNECTION_LOST);
+    this._eventEmitter.removeAllListeners(QuitoEvent.CLOSED);
     this._eventEmitter.removeAllListeners(QuitoEvent.DELIVERY_COMPLETE);
     this._eventEmitter.removeAllListeners(QuitoEvent.DISCONNECTED);
     this._eventEmitter.removeAllListeners(QuitoEvent.EXCEPTION);
@@ -156,6 +157,7 @@ export class Quito {
   private _setupEventListeners(): void {
     this._addEventListener(QuitoEvent.CONNECTING);
     this._addEventListener(QuitoEvent.CONNECTED);
+    this._addEventListener(QuitoEvent.CLOSED);
     this._addEventListener(
       QuitoEvent.CONNECTION_LOST,
       QuitoEventParam.ERR_MESSAGE,
