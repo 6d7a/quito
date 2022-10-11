@@ -15,6 +15,12 @@ class QuitoNativeMock implements NativeQuito {
     private _subscriptions: QuitoSubscription[] = []
     private _publishedMessages: PublishedMsg[] = []
 
+    resetMock() {
+        this._publishedMessages = []
+        this._subscriptions = []
+        this.options = undefined
+        this.connectionState = false
+    }
     async addListener(_?: string) {}
     async removeListeners(_?: number) {}
 
