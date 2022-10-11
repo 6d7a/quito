@@ -1,3 +1,4 @@
+import type { NativeQuito } from "src/models/NativeQuito";
 import type { PublishOptions } from "src/models/PublishOptions";
 import type { QuitoOptions } from "src/models/QuitoOptions";
 import type { QuitoSubscription } from "src/models/QuitoSubscription";
@@ -8,41 +9,44 @@ type PublishedMsg = {
     publishOptions: PublishOptions;
 }
 
-class QuitoNativeMock {
+class QuitoNativeMock implements NativeQuito {
     options: QuitoOptions | undefined
+    connectionState = false
     private _subscriptions: QuitoSubscription[] = []
     private _publishedMessages: PublishedMsg[] = []
-    private _connectionState = false
 
-    createClient(options: QuitoOptions): string {
+    async addListener(_?: string) {}
+    async removeListeners(_?: number) {}
+
+    async createClient(options: QuitoOptions): Promise<string> {
         this.options = options
         return "test-client"
     }
 
-    connect(_: string) {
-        this._connectionState = true
+    async connect(_: string) {
+        this.connectionState = true
     }
-    disconnect(_: string) {
-        this._connectionState = false
+    async disconnect(_: string) {
+        this.connectionState = false
     }
-    reconnect(_: string) {
-        this._connectionState = true
+    async reconnect(_: string) {
+        this.connectionState = true
     }
-    isConnected(_: string) {
-        return this._connectionState
+    async isConnected(_: string) {
+        return this.connectionState
     }
-    subscribe(topics: QuitoSubscription[], _: string) {
+    async subscribe(topics: QuitoSubscription[], _: string) {
         this._subscriptions.push(...topics)
     }
-    unsubscribe(topics: string[], _: string) {
+    async unsubscribe(topics: string[], _: string) {
         this._subscriptions = this._subscriptions.filter(s => !topics.includes(s.topic))
     }
-    publish(topic: string, payload: string, options: PublishOptions, _: string) {
+    async publish(topic: string, payload: string, options: PublishOptions, _: string) {
         this._publishedMessages.push({ topic, payloadBase64: payload, publishOptions: options })
     }
-    end(_1: string, _2: boolean) {
-        this._connectionState = false
+    async end(_1: string, _2: boolean) {
+        this.connectionState = false
     }
 }
 
-export default new QuitoNativeMock()
+export const mockQuitoNative = new QuitoNativeMock()
