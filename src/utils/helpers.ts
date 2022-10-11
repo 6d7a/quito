@@ -9,7 +9,7 @@ export type UrlData = {
 
 export const parseBrokerUrl = (url: string): UrlData => {
   const destructured = url.match(
-    /^((mqtt[s]?|ws[s]?|tcp?|ssl?)?:(\/\/)([0-9a-zA-Z_\.\-]*):?(\d+))$/
+    /^((mqtt[s]?|ws[s]?|tcp?|ssl?)?:(\/\/)([0-9a-zA-Z_\/\.\-]*):?(\d+))$/
   );
 
   if (!destructured || destructured.length != 6) {
@@ -19,11 +19,6 @@ export const parseBrokerUrl = (url: string): UrlData => {
   const [, , protocolStr, , host, portStr] = destructured;
 
   const port = parseInt(portStr);
-
-  if (isNaN(port)) {
-    throw new Error(`Invalid port: ${portStr}`);
-  }
-
   const protocol = parseProtocolString(protocolStr);
 
   const tls =

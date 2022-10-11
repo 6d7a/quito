@@ -315,7 +315,6 @@ describe('events', () => {
   it('calls message received callback', (done) => {
     const msg = { topic: 'test/topic/#', payload: Uint8Array.from(Buffer.from("Test", "utf-8")) };
     quito.on(QuitoEvent.MESSAGE_RECEIVED, (topic: string, payload: Uint8Array) => {
-      console.log(topic, payload)
       expect(topic).toBe(msg.topic);
       expect(payload).toStrictEqual(msg.payload);
       done();
@@ -330,7 +329,6 @@ describe('events', () => {
   it('calls message published callback', (done) => {
     const msg = { topic: 'test/topic/#', payload: Uint8Array.from(Buffer.from("Test", "utf-8")) };
     quito.on(QuitoEvent.MESSAGE_PUBLISHED, (topic: string, payload: Uint8Array) => {
-      console.log(topic, payload)
       expect(topic).toBe(msg.topic);
       expect(payload).toStrictEqual(msg.payload);
       done();
