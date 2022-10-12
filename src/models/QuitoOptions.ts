@@ -29,6 +29,9 @@ export type QuitoOptions = {
 export class QuitoOptionsBuilder {
   private _options: QuitoOptions = {};
 
+  public peek(field: string): any {
+    return (this._options as any)[field]
+  }
   public uri(uri: string): QuitoOptionsBuilder;
   public uri(
     host: string,
