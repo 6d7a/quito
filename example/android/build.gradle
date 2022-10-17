@@ -3,8 +3,8 @@
 buildscript {
     ext {
         minSdkVersion = 24
-        compileSdkVersion = 31
-        targetSdkVersion = 31
+        compileSdkVersion = 32
+        targetSdkVersion = 32
     }
     repositories {
         google()
@@ -12,7 +12,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.5.3")
+        classpath("com.android.tools.build:gradle:4.1.0")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -37,7 +37,17 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
         maven {
             // All of Detox' artifacts are provided via the npm module
-            url "$rootDir/../node_modules/detox/Detox-android"
+            url "$rootDir/../../node_modules/detox/Detox-android"
+        }
+    }
+
+    afterEvaluate {
+        if (it.hasProperty('android')){
+            android {
+                defaultConfig {
+                    minSdkVersion 21 // Replace '21' with whatever suites your case
+                }
+            }
         }
     }
 }
