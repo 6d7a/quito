@@ -153,7 +153,7 @@ class Quito(
     topic: String, payloadBase64: String, options: PublishOptions, promise: Promise? = null
   ) {
     try {
-      val encodedPayload = payloadBase64.toByteArray(Charsets.UTF_8)
+      val encodedPayload = Base64.decode(payloadBase64, Base64.NO_WRAP)
       val message = MqttMessage(encodedPayload)
         .apply {
           qos = options.qos.ordinal
@@ -248,7 +248,7 @@ class Quito(
     if (message != null) {
       params.putString(
         PAYLOAD.name,
-        Base64.encodeToString(message.payload, Base64.DEFAULT)
+        Base64.encodeToString(message.payload, Base64.NO_WRAP)
       )
       params.putInt(QOS.name, message.qos)
       params.putBoolean(RETAIN.name, message.isRetained)
