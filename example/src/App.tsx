@@ -19,7 +19,6 @@ export default function App() {
   const [toSubscribeTo, setToSubscribeTo] = React.useState('');
   const [toUnsubscribeFrom, setToUnsubscribeFrom] = React.useState('');
 
-  const optionsBuilder = React.useRef(new QuitoOptionsBuilder());
   const [brokerUri, setBrokerUri] = React.useState(
     'tcp://test.mosquitto.org:1883'
   );
@@ -35,7 +34,7 @@ export default function App() {
   });
 
   React.useEffect(() => {
-    mqttClient?.end();
+    mqttClient?.endAsync().catch(console.warn);
 
     const client = new Quito(options);
 
@@ -145,7 +144,7 @@ export default function App() {
         testID='configUpdateButton'
         title={'update quito config'}
         onPress={() =>
-          setOptions(optionsBuilder.current.uri(brokerUri).build())
+          setOptions(new QuitoOptionsBuilder().uri(brokerUri).build())
         }
       />
     </SafeAreaView>
