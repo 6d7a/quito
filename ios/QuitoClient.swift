@@ -11,9 +11,9 @@ class QuitoClient {
     self.clientRef = clientRef
     self.eventEmitter = eventEmitter
     self.options = options
-      if options.connProtocol == Protocol.WS || options.connProtocol == Protocol.WSS {
-      let socket = CocoaMQTTWebSocket(uri: options.host)
-          self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port, socket: socket)
+    if options.connProtocol == Protocol.WS || options.connProtocol == Protocol.WSS {
+        let socket = CocoaMQTTWebSocket()
+        self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port, socket: socket)
     } else {
         self.client = CocoaMQTT(clientID: options.clientId, host: options.host, port: options.port)
     }
