@@ -47,7 +47,7 @@ export default function App() {
         });
 
         client.on(QuitoEvent.MESSAGE_RECEIVED, (topic, message) => {
-          setMessage(`TOPIC "${topic}" ---> ${Buffer.from(message).toString()}`);
+          setMessage(`TOPIC "${topic}" ---> ${message}`);
         });
 
         client

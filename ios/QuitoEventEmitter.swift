@@ -10,7 +10,7 @@ class QuitoEventEmitter {
   }
 
   func forwardException(e: Error) {
-    let params: [QuitoEventParam: Any] = [
+    let params: [String: Any] = [
         QuitoEventParam.ERR_CODE.rawValue: 0,
       QuitoEventParam.ERR_MESSAGE.rawValue: e.localizedDescription,
       QuitoEventParam.STACKTRACE.rawValue: ""

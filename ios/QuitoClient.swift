@@ -34,7 +34,7 @@ class QuitoClient {
     self.client.didReceiveMessage = { (_, msg, _) in
       self.eventEmitter.sendEvent(event: QuitoEvent.MESSAGE_RECEIVED, params: [
         QuitoEventParam.TOPIC.rawValue: msg.topic,
-        QuitoEventParam.PAYLOAD.rawValue: msg.payload.toBase64()!
+        QuitoEventParam.PAYLOAD.rawValue: Data(msg.payload).base64EncodedString()
       ])
     } 
   } 
@@ -141,7 +141,7 @@ class QuitoClient {
         let message = CocoaMQTTMessage(topic: topic, payload: [UInt8](payload), qos: options.qos.cocoaQos(), retained: options.retain)
       message.duplicated = options.isDuplicate
       self.client.didPublishMessage = { (_, msg, _) in
-          self.eventEmitter.sendEvent(event: QuitoEvent.UNSUBSCRIBED, params: [
+          self.eventEmitter.sendEvent(event: QuitoEvent.MESSAGE_PUBLISHED, params: [
             QuitoEventParam.TOPIC.rawValue: topic,
             QuitoEventParam.PAYLOAD.rawValue: payloadBase64
           ])
@@ -156,7 +156,7 @@ class QuitoClient {
   }
 
   /**
-   * Disconnects the client from the MQTT broker
+   * Disconcts the client from the MQTT broker
    *
    * @param resolve resolve block of the JS promise to forward the result of the disconnect attempt
    * @param reject reject block of the JS promise to forward the result of the disconnect attempt
