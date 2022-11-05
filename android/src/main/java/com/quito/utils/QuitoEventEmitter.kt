@@ -15,7 +15,6 @@ class QuitoEventEmitter(private val reactContext: ReactContext, private val clie
    */
   fun forwardException(e: Throwable) {
     val params = Arguments.createMap()
-    var message = e.message
     if (e is MqttException) {
       params.putInt(QuitoEventParam.ERR_CODE.name, e.reasonCode)
 
