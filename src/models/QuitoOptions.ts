@@ -43,7 +43,7 @@ export class QuitoOptionsBuilder {
     port?: number,
     protocol?: Protocol
   ): QuitoOptionsBuilder {
-    if (port === undefined) {
+    if (port === undefined || hostOrUri.includes(":")) {
       const uri = hostOrUri;
       const { host, port, protocol, tls } = parseBrokerUrl(uri);
       this._options.host = host;
