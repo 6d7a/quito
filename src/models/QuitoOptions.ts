@@ -11,9 +11,10 @@ export type QuitoOptions = {
   connectTimeoutMs?: number;
   will?: Will;
   tls?: boolean;
-  caBase64?: String;
-  certificateBase64?: String;
-  privateKeyBase64?: string;
+  ios_certKeyP12Base64: String;
+  android_caBase64?: String;
+  android_certificateBase64?: String;
+  android_privateKeyBase64?: string;
   keyStorePassword?: string;
   cleanSession?: boolean;
   protocol?: Protocol;
@@ -107,12 +108,12 @@ export class QuitoOptionsBuilder {
   }
 
   public ca(ca: Buffer): QuitoOptionsBuilder {
-    this._options.caBase64 = ca.toString('base64');
+    this._options.android_caBase64 = ca.toString('base64');
     return this;
   }
 
-  public caBase64(caBase64: String): QuitoOptionsBuilder {
-    this._options.caBase64 = caBase64;
+  public android_caBase64(android_caBase64: String): QuitoOptionsBuilder {
+    this._options.android_caBase64 = android_caBase64;
     return this;
   }
 
@@ -121,24 +122,24 @@ export class QuitoOptionsBuilder {
     keyRsaDer: Buffer,
     keyStorePassword: string
   ): QuitoOptionsBuilder {
-    this._options.certificateBase64 = certificateDer.toString('base64');
-    this._options.privateKeyBase64 = keyRsaDer.toString('base64');
+    this._options.android_certificateBase64 = certificateDer.toString('base64');
+    this._options.android_privateKeyBase64 = keyRsaDer.toString('base64');
     this._options.keyStorePassword = keyStorePassword;
     return this;
   }
 
   public certificate(certificate: Buffer): QuitoOptionsBuilder {
-    this._options.certificateBase64 = certificate.toString('base64');
+    this._options.android_certificateBase64 = certificate.toString('base64');
     return this;
   }
 
-  public certificateBase64(certificateBase64: String): QuitoOptionsBuilder {
-    this._options.certificateBase64 = certificateBase64;
+  public android_certificateBase64(android_certificateBase64: String): QuitoOptionsBuilder {
+    this._options.android_certificateBase64 = android_certificateBase64;
     return this;
   }
 
   public keyStoreKey(keyStoreKey: string): QuitoOptionsBuilder {
-    this._options.privateKeyBase64 = keyStoreKey;
+    this._options.android_privateKeyBase64 = keyStoreKey;
     return this;
   }
 

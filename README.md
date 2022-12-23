@@ -209,10 +209,13 @@ Use the QuitoOptionsBuilder to generate a config for the Quito MQTT client. The 
   - `payload`: _string_ - Message of the will Base64-encoded
   - `qos`: _QoS_ - quality of service of the will
   - `retain`: _boolean_ - Indicates whether the will should be retained
-- `tls`: _boolean_ - Whether the client will secure the connection to the broker using TLS. If `true`, at least the broker's CA certificate `caBase64` is required. If the broker expects the client to present a certificate as well, the shared `caBase64` plus `certificateBase64`, `keyStoreKey`, and `keyStorePassword` options become mandatory
-- `caBase64`: _String_ - Base64-encoded CA certificate (DER) used by the MQTT broker
-- `certificateBase64`: _String_ - Base64-encoded self-signed certificate (DER) of the client
-- `privateKeyBase64`: _string_ - Base64-encoded RSA private key of the client
+- `tls`: _boolean_ - Whether the client will secure the connection to the broker using TLS. Depending on the host platform, the options vary.
+  - **On Android**: If `tls == true`, at least the broker's CA certificate `android_caBase64` is required. If the broker expects the client to present a certificate as well, the shared `android_caBase64` plus `android_certificateBase64`, `keyStoreKey`, and `keyStorePassword` options become mandatory
+  - **On iOS**: If `tls == true` and no `ios_certKeyP12Base64` is provided, broker certificates will not be validated. If `tls == true` and `ios_certKeyP12Base64` is provided, the client wil authenticate using the contained crypto.
+- `ios_certKeyP12Base64`: _String_ - Base64-encoded PKCS12 archive containing client certificate and key
+- `android_caBase64`: _String_ - Base64-encoded CA certificate (DER) used by the MQTT broker
+- `android_certificateBase64`: _String_ - Base64-encoded self-signed X509 certificate (DER) of the client
+- `android_privateKeyBase64`: _string_ - Base64-encoded RSA private key of the client
 - `keyStorePassword`: _string_ - Password used in creating the client's keystore
 - `cleanSession`: _boolean_ - When set to `true`, the broker will open a non-persistent connection, during which it will not store any subscription information or undelivered messages for the client
 - `protocol`: _Protocol_ - Identifies the protocol used in the connection to the broker

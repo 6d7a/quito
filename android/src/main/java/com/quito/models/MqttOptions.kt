@@ -14,9 +14,9 @@ data class MqttOptions(
   val username: String?,
   val password: String?,
   val tls: Boolean,
-  val caBase64: String?,
+  val android_caBase64: String?,
   val keyStoreKey: String?,
-  val certificateBase64: String?,
+  val android_certificateBase64: String?,
   val keyStorePassword: String?,
   val keepaliveSec: Int,
   val protocolVersion: Int,
@@ -34,9 +34,9 @@ data class MqttOptions(
     optionsFromJs.getOr<String?>("username", null),
     optionsFromJs.getOr<String?>("password", null),
     optionsFromJs.getOr<Boolean>("tls", false),
-    optionsFromJs.getOr<String?>("caBase64", null),
+    optionsFromJs.getOr<String?>("android_caBase64", null),
     optionsFromJs.getOr<String?>("keyStoreKey", null),
-    optionsFromJs.getOr<String?>("certificateBase64", null),
+    optionsFromJs.getOr<String?>("android_certificateBase64", null),
     optionsFromJs.getOr<String?>("keyStorePassword", null),
     optionsFromJs.getOr<Int>("keepaliveSec", 60),
     optionsFromJs.getOr<Int>("protocolLevel", 4),
@@ -59,9 +59,9 @@ data class MqttOptions(
     }
     if (this@MqttOptions.tls) {
       socketFactory = tlsHelpers.getSocketFactory(
-        this@MqttOptions.caBase64,
+        this@MqttOptions.android_caBase64,
         this@MqttOptions.keyStoreKey,
-        this@MqttOptions.certificateBase64,
+        this@MqttOptions.android_certificateBase64,
         this@MqttOptions.keyStorePassword
       )
     }
