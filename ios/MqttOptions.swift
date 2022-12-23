@@ -6,6 +6,7 @@ struct MqttOptions {
   let username: String?
   let password: String?
   let tls: Bool
+  let ios_certKeyP12Base64: String?
   let android_caBase64: String?
   let android_privateKeyBase64: String?
   let android_certificateBase64: String?
@@ -23,9 +24,7 @@ struct MqttOptions {
     self.username = optionsFromJs["username"] as? String
     self.password = optionsFromJs["password"] as? String
     self.tls = Helpers.getOrDefault(dict: optionsFromJs, key: "tls", defaultValue: false)
-    self.android_caBase64 = optionsFromJs["android_caBase64"] as? String
-    self.android_privateKeyBase64 = optionsFromJs["android_privateKeyBase64"] as? String
-    self.android_certificateBase64 = optionsFromJs["android_certificateBase64"] as? String
+    self.ios_certKeyP12Base64 = optionsFromJs["ios_certKeyP12Base64"] as? String
     self.keyStorePassword = optionsFromJs["keyStorePassword"] as? String
     self.keepaliveSec = Helpers.getOrDefault(dict: optionsFromJs, key: "keepaliveSec", defaultValue: 60)
     self.cleanSession = Helpers.getOrDefault(dict: optionsFromJs, key: "clean", defaultValue: true)
