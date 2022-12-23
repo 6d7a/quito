@@ -21,11 +21,48 @@ class QuitoClient {
     self.client.username = options.username
     self.client.password = options.password
     self.client.cleanSession = options.cleanSession
-      self.client.willMessage = options.will?.toCocoaMqttMessage()
+    self.client.willMessage = options.will?.toCocoaMqttMessage()
     self.client.keepAlive = options.keepaliveSec
-      self.client.enableSSL = options.tls
+    self.client.enableSSL = options.tls
 
-      self.client.didChangeState = { (_: CocoaMQTT, newState: CocoaMQTTConnState) in
+      if options.ios_certKeyP12Base64 && options.keyStorePassword {
+        let opts: NSDictionary = [kSecImportExportPassphrase: options.keyStorePassword]
+        var items: CFArray?
+
+        guard let p12Data = NSData(base64Encoded: options.ios_certKeyP12Base64, optionignoreUnknownCharacters) else {
+          callback([ "Failed to read p12 certificate" ])
+          return
+        }
+        let securityError = SecPKCS12Import(p12Data, opts, &items)
+
+        guard securityError == errSecSuccess else {
+          if securityError == errSecAuthFailed {
+              callback([ "SecPKCS12Import returned errSecAuthFailed. Incorrect password?" ])
+          } else {
+              callback([ "Failed to read p12 certificate" ])
+          }
+          return
+        }
+
+        guard let theArray = items, CFArrayGetCount(theArray) > 0 else {
+          callback([ "Failed to properly read p12 certificate" ])
+          return
+        }
+
+        let dictionary = (theArray as NSArray).object(at: 0)
+        guard let identity = (dictionary as AnyObject).value(forKey: kSecImportItemIdentity as String) else {
+          callback([ "Failed to properly read p12 certificate" ])
+          return
+        }
+
+        var sslSettings: [String: NSObject] = [:]
+
+        sslSettings["kCFStreamSSLIsServer"] = NSNumber(value: false)
+        sslSettings["kCFStreamSSLCertificates"] = [identity] as CFArray
+        self.client.sslSettings = sslSettings
+      }
+
+    self.client.didChangeState = { (_: CocoaMQTT, newState: CocoaMQTTConnState) in
       if newState == CocoaMQTTConnState.disconnected {
         self.eventEmitter.sendEvent(event: QuitoEvent.CONNECTION_LOST)
       }
