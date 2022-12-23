@@ -7,7 +7,7 @@ struct MqttOptions {
   let password: String?
   let tls: Bool
   let caBase64: String?
-  let keyStoreKey: String?
+  let privateKeyBase64: String?
   let certificateBase64: String?
   let keyStorePassword: String?
   let keepaliveSec: UInt16
@@ -24,7 +24,7 @@ struct MqttOptions {
     self.password = optionsFromJs["password"] as? String
     self.tls = Helpers.getOrDefault(dict: optionsFromJs, key: "tls", defaultValue: false)
     self.caBase64 = optionsFromJs["caBase64"] as? String
-    self.keyStoreKey = optionsFromJs["keyStoreKey"] as? String
+    self.privateKeyBase64 = optionsFromJs["privateKeyBase64"] as? String
     self.certificateBase64 = optionsFromJs["certificateBase64"] as? String
     self.keyStorePassword = optionsFromJs["keyStorePassword"] as? String
     self.keepaliveSec = Helpers.getOrDefault(dict: optionsFromJs, key: "keepaliveSec", defaultValue: 60)
