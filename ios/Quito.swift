@@ -15,13 +15,13 @@ class Quito: RCTEventEmitter {
     @objc func createClient(_ options: NSDictionary, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
       do {
         let id = UUID().uuidString
-        clients[id] = QuitoClient(withEmitter: 
+        clients[id] = try QuitoClient(withEmitter:
                                     QuitoEventEmitter(withNativeEventEmitter: self, clientRef: id),
                                   options: MqttOptions(fromJsOptions: options),
                                   clientRef: id
         )
         resolve(id)
-      } catch {
+      } catch let error {
           reject("", error.localizedDescription, nil)
       }
     }
