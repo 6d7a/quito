@@ -199,11 +199,12 @@ class QuitoClient {
     
     private func parseCertificate(options: MqttOptions) throws {
         guard let certKey = options.ios_certKeyP12Base64 else {
-            throw QuitoError.certificateError("A Base64-encoded p12 certificate must be provided when TLS is activated.")
+            self.client.allowUntrustCACertificate = true
+            return
         }
         
         guard let keystorePw = options.keyStorePassword else {
-            throw QuitoError.certificateError("A keystore password must be provided when TLS is activated.")
+            throw QuitoError.certificateError("A keystore password for the p12 certificate must be provided.")
         }
         
         let opts: NSDictionary = [kSecImportExportPassphrase: keystorePw]
