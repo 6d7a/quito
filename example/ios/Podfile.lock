@@ -17,7 +17,7 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.69.2)
   - fmt (6.2.1)
   - glog (0.3.5)
-  - quito (0.1.0):
+  - quito (0.1.1):
     - CocoaAsyncSocket
     - CocoaMQTT/WebSockets (= 2.0.5)
     - React-Core
@@ -420,7 +420,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 1381e8c4230895b6c2d20cea6b216ac7096a95f0
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
-  quito: 1e3e0aa58729f7cc5caef946a648d4ef26ae374e
+  quito: f67c740cc77b98e4e4aad82ca0ebccd3ca870114
   RCT-Folly: b9d9fe1fc70114b751c076104e52f3b1b5e5a95a
   RCTRequired: b723d4d6da2795df58189a01f92856b6912cf256
   RCTTypeSafety: 3973d2fcf39f43f7819e840d56ea6b2fe45996a0

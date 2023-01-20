@@ -7,6 +7,8 @@ A TCP-capable MQTT client for React Native. The module provides a Typescript API
 
 The module provides both promise- and callback-based methods to interact with the native clients.
 
+This libraries owes a lot to [davesters](https://github.com/davesters)' and [SudoPlz](https://github.com/SudoPlz)' respective libraries, so thank you :100:
+
 ## Installation
 
 ```sh
@@ -223,18 +225,3 @@ Use the QuitoOptionsBuilder to generate a config for the Quito MQTT client. The 
 - `reconnectPeriod`: _number_ - Time interval to elapse before a client will attempt to reconnect an unexpectedly disconnected client
 - `host`: _string_ - Host name of the MQTT broker to connect to
 - `port`: _number_ - Port number of the MQTT broker to connect to
-
-The QuitoOptionsBuilder provides a number of convenience methods for configurating:
-
-```typescript
-const config = new QuitoOptionsBuilder()
-  // uri(uri: string)
-  // parses uri and sets host, port,
-  // protocol, and tls (if applicable)
-  .uri('ssl://test.mosquitto.org:8883')
-  .ca(/* takes a Buffer of the DER-encoded CA */)
-  // clientCertificate(certificateDer: Buffer, keyRsaDer: Buffer, keyStorePassword: string)
-  // sets all necessary options for self-signed client authentication
-  .clientCertificate(cert, key, pass)
-  .build();
-```

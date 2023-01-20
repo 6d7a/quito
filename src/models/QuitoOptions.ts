@@ -11,7 +11,7 @@ export type QuitoOptions = {
   connectTimeoutMs?: number;
   will?: Will;
   tls?: boolean;
-  ios_certKeyP12Base64: String;
+  ios_certKeyP12Base64?: String;
   android_caBase64?: String;
   android_certificateBase64?: String;
   android_privateKeyBase64?: string;
