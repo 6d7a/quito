@@ -7,7 +7,7 @@ A TCP-capable MQTT client for React Native. The module provides a Typescript API
 
 The module provides both promise- and callback-based methods to interact with the native clients.
 
-This libraries owes a lot to @davesters and @SudoPlz respective libraries, so thank you :100:
+This libraries owes a lot to [davesters](https://github.com/davesters)' and [SudoPlz](https://github.com/SudoPlz)' respective libraries, so thank you :100:
 
 ## Installation
 
