@@ -7,9 +7,6 @@ struct MqttOptions {
   let password: String?
   let tls: Bool
   let ios_certKeyP12Base64: String?
-  let android_caBase64: String?
-  let android_privateKeyBase64: String?
-  let android_certificateBase64: String?
   let keyStorePassword: String?
   let keepaliveSec: UInt16
   let cleanSession: Bool
