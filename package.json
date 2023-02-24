@@ -1,6 +1,6 @@
 {
   "name": "quito",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A TCP-capable MQTT client for react native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
