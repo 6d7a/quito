@@ -14,7 +14,7 @@ struct MqttOptions {
   let will: Will?
 
   init(fromJsOptions optionsFromJs: NSDictionary) {
-      self.clientId = Helpers.getOrDefault(dict: optionsFromJs, key: "clientId", defaultValue: "quito-android-\(UUID().uuidString)")
+      self.clientId = Helpers.getOrDefault(dict: optionsFromJs, key: "clientId", defaultValue: "quito-ios-\(UUID().uuidString)")
       self.host = Helpers.getOrDefault(dict: optionsFromJs, key: "host", defaultValue: "test.mosquitto.org")
       self.port = Helpers.getOrDefault(dict: optionsFromJs, key: "port", defaultValue: 1883)
       self.connProtocol = Protocol(rawValue: Helpers.getOrDefault(dict: optionsFromJs, key: "protocol", defaultValue: "TCP"))!
@@ -26,7 +26,7 @@ struct MqttOptions {
     self.keepaliveSec = Helpers.getOrDefault(dict: optionsFromJs, key: "keepaliveSec", defaultValue: 60)
     self.cleanSession = Helpers.getOrDefault(dict: optionsFromJs, key: "clean", defaultValue: true)
     self.connectionTimeout = TimeInterval((Helpers.getOrDefault(dict: optionsFromJs, key: "connectionTimeoutMs", defaultValue: 30000)) / 1000)
-    if let willmsg = optionsFromJs["username"] as! NSDictionary? {
+    if let willmsg = optionsFromJs["will"] as? NSDictionary {
         self.will = Will(fromJsWill: willmsg)
     } else {
         self.will = nil
